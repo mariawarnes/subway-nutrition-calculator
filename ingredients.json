@@ -55,6 +55,14 @@
       "protein": 6,
       "carbs": 35,
       "fat": 5.4
+    },
+    {
+      "id": "b-8",
+      "name": "Wholegrain Bread",
+      "calories": 207,
+      "protein": 9.9,
+      "carbs": 35,
+      "fat": 1.1
     }
   ],
   "proteins": [
