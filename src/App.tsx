@@ -20,13 +20,20 @@ function App() {
   );
   const [selectedBread, setSelectedBread] = useState<Ingredient | null>(null);
   const [selectedCheese, setSelectedCheese] = useState<Ingredient | null>(null);
-  const [selectedSalads, setSelectedSalads] = useState([]);
-  const [selectedSauces, setSelectedSauces] = useState([]);
-  const [selectedExtras, setSelectedExtras] = useState([]);
-  const [selectedToppings, setSelectedToppings] = useState([]);
-
+  const [selectedSalads, setSelectedSalads] = useState<Ingredient[] | null>(
+    null
+  );
+  const [selectedSauces, setSelectedSauces] = useState<Ingredient[] | null>(
+    null
+  );
+  const [selectedExtras, setSelectedExtras] = useState<Ingredient[] | null>(
+    null
+  );
+  const [selectedToppings, setSelectedToppings] = useState<Ingredient[] | null>(
+    null
+  );
   return (
-    <div className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-light-green">
+    <div className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-white space-y-4">
       <h1 className="font-black text-2xl w-full text-center font-dark-green">
         Subway Calculator
       </h1>
@@ -39,12 +46,14 @@ function App() {
           setSelected={setSelectedProduct}
         />
         {/* Bread */}
-        <SingleSelectDropdown
-          title={"Bread"}
-          options={breads}
-          selected={selectedBread}
-          setSelected={setSelectedBread}
-        />
+        {(selectedProduct?.id == "p-1" || selectedProduct?.id == "p-2") && (
+          <SingleSelectDropdown
+            title={"Bread"}
+            options={breads}
+            selected={selectedBread}
+            setSelected={setSelectedBread}
+          />
+        )}
         {/* Cheese */}
         <SingleSelectDropdown
           title={"Cheese"}
@@ -53,13 +62,33 @@ function App() {
           setSelected={setSelectedCheese}
         />
         {/* Salads */}
-        <MultiSelectDropdown />
+        <MultiSelectDropdown
+          title={"Salads"}
+          options={salads}
+          selected={selectedSalads}
+          setSelected={setSelectedSalads}
+        />
         {/* Sauces */}
-        <MultiSelectDropdown />
+        <MultiSelectDropdown
+          title={"Sauces"}
+          options={sauces}
+          selected={selectedSauces}
+          setSelected={setSelectedSauces}
+        />
         {/* Extras */}
-        <MultiSelectDropdown />
+        <MultiSelectDropdown
+          title={"Extras"}
+          options={extras}
+          selected={selectedExtras}
+          setSelected={setSelectedExtras}
+        />
         {/* Toppings */}
-        <MultiSelectDropdown />h
+        <MultiSelectDropdown
+          title={"Toppings"}
+          options={toppings}
+          selected={selectedToppings}
+          setSelected={setSelectedToppings}
+        />
       </div>
     </div>
   );
