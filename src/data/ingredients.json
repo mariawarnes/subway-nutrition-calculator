@@ -1,4 +1,38 @@
 {
+  "products": [
+    {
+      "id": "p-1",
+      "name": "6-inch Sub",
+      "calories": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0
+    },
+    {
+      "id": "p-2",
+      "name": "Footlong Sub",
+      "calories": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0
+    },
+    {
+      "id": "p-3",
+      "name": "Tortilla Wrap",
+      "calories": 214.5,
+      "protein": 6,
+      "carbs": 35,
+      "fat": 5.4
+    },
+    {
+      "id": "p-4",
+      "name": "Salad",
+      "calories": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0
+    }
+  ],
   "breads": [
     {
       "id": "b-1",
@@ -50,14 +84,6 @@
     },
     {
       "id": "b-7",
-      "name": "Tortilla Wrap",
-      "calories": 214.5,
-      "protein": 6,
-      "carbs": 35,
-      "fat": 5.4
-    },
-    {
-      "id": "b-8",
       "name": "Wholegrain Bread",
       "calories": 207,
       "protein": 9.9,
@@ -294,7 +320,7 @@
   "cheeses": [
     {
       "id": "c-1",
-      "name": "American-style Cheese",
+      "name": "American-style Cheese (V)",
       "calories": 42,
       "protein": 2.3,
       "carbs": 0.4,
@@ -302,7 +328,7 @@
     },
     {
       "id": "c-2",
-      "name": "Monterey Jack Cheddar Slices",
+      "name": "Monterey Jack Cheddar Slices (V)",
       "calories": 38,
       "protein": 2.3,
       "carbs": 0,
@@ -318,7 +344,7 @@
     },
     {
       "id": "c-4",
-      "name": "Peppered Cheese",
+      "name": "Peppered Cheese (V)",
       "calories": 45,
       "protein": 2.5,
       "carbs": 0.3,
@@ -326,7 +352,7 @@
     },
     {
       "id": "c-5",
-      "name": "Shredded Mozzarella & Cheddar Cheese Mix",
+      "name": "Shredded Mozzarella & Cheddar Blend (V)",
       "calories": 45,
       "protein": 3.2,
       "carbs": 0.6,
@@ -360,11 +386,19 @@
     },
     {
       "id": "s-2",
-      "name": "Chipotle Southwest Sauce",
+      "name": "Chipotle Southwest Sauce (V)",
       "calories": 58,
       "protein": 0.1,
       "carbs": 1.2,
       "fat": 5.8
+    },
+    {
+      "id": "s-4",
+      "name": "Extra Spicy Chipotle Sauce (V)",
+      "calories": 60,
+      "protein": 0.2,
+      "carbs": 1.1,
+      "fat": 6.1
     },
     {
       "id": "s-3",
@@ -375,16 +409,8 @@
       "fat": 0.7
     },
     {
-      "id": "s-4",
-      "name": "Extra Spicy Chipotle Sauce",
-      "calories": 60,
-      "protein": 0.2,
-      "carbs": 1.1,
-      "fat": 6.1
-    },
-    {
       "id": "s-5",
-      "name": "Garlic & Herb Sauce",
+      "name": "Garlic & Herb Sauce (VE)",
       "calories": 51,
       "protein": 0,
       "carbs": 0.6,
@@ -464,7 +490,7 @@
     },
     {
       "id": "s-15",
-      "name": "Teriyaki Sauce",
+      "name": "Teriyaki Sauce (VE)",
       "calories": 25,
       "protein": 0.4,
       "carbs": 5.5,
@@ -472,7 +498,7 @@
     },
     {
       "id": "s-16",
-      "name": "Tomato Ketchup",
+      "name": "Tomato Ketchup (VE)",
       "calories": 14,
       "protein": 0.2,
       "carbs": 3.2,
@@ -480,13 +506,13 @@
     },
     {
       "id": "s-17",
-      "name": "Mango Habanero Sauce",
+      "name": "Mango Habanero Sauce (VE)",
       "calories": 23,
       "protein": 0,
       "fat": 0
     }
   ],
-  "vegetables": [
+  "salads": [
     {
       "id": "v-1",
       "name": "Cucumbers",

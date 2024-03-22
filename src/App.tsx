@@ -3,30 +3,27 @@ import "./App.css";
 import Button from "./components/Button";
 import SingleSelectDropdown from "./components/SingleSelectDropdown";
 import MultiSelectDropdown from "./components/MultiSelectDropdown";
+import {
+  products,
+  breads,
+  cheeses,
+  salads,
+  sauces,
+  extras,
+  toppings,
+} from "./data/ingredients.json";
+import { Ingredient } from "./types";
 
 function App() {
-  const [product, setProduct] = useState("");
-  const [bread, setBread] = useState("");
-  const [cheese, setCheese] = useState("");
-  const [salads, setSalads] = useState([]);
-  const [sauces, setSauces] = useState([]);
-  const [extras, setExtras] = useState([]);
-  const [toppings, setToppings] = useState([]);
-
-  const products = [
-    {
-      name: "6-inch Sub",
-    },
-    {
-      name: "Footlong Sub",
-    },
-    {
-      name: "Wrap",
-    },
-    {
-      name: "Salad",
-    },
-  ];
+  const [selectedProduct, setSelectedProduct] = useState<Ingredient | null>(
+    null
+  );
+  const [selectedBread, setSelectedBread] = useState<Ingredient | null>(null);
+  const [selectedCheese, setSelectedCheese] = useState<Ingredient | null>(null);
+  const [selectedSalads, setSelectedSalads] = useState([]);
+  const [selectedSauces, setSelectedSauces] = useState([]);
+  const [selectedExtras, setSelectedExtras] = useState([]);
+  const [selectedToppings, setSelectedToppings] = useState([]);
 
   return (
     <div className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-light-green">
@@ -35,11 +32,26 @@ function App() {
       </h1>
       <div className="flex flex-col space-y-4">
         {/* Product */}
-        <SingleSelectDropdown title={"Product"} options={products} />
+        <SingleSelectDropdown
+          title={"Product"}
+          options={products}
+          selected={selectedProduct}
+          setSelected={setSelectedProduct}
+        />
         {/* Bread */}
-        {/* <SingleSelectDropdown /> */}
+        <SingleSelectDropdown
+          title={"Bread"}
+          options={breads}
+          selected={selectedBread}
+          setSelected={setSelectedBread}
+        />
         {/* Cheese */}
-        {/* <SingleSelectDropdown /> */}
+        <SingleSelectDropdown
+          title={"Cheese"}
+          options={cheeses}
+          selected={selectedCheese}
+          setSelected={setSelectedCheese}
+        />
         {/* Salads */}
         <MultiSelectDropdown />
         {/* Sauces */}

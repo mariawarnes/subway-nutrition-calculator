@@ -1,16 +1,18 @@
-import { slugify } from "@/utils";
 import { Listbox } from "@headlessui/react";
-import React, { useState } from "react";
+import { SingleSelectDropdownProps } from "../types";
 
-const SingleSelectDropdown = ({ title, options }) => {
-  const [selected, setSelected] = useState(options[0]);
-
+const SingleSelectDropdown = ({
+  title,
+  options,
+  selected,
+  setSelected,
+}: SingleSelectDropdownProps) => {
   return (
     <Listbox value={selected} onChange={setSelected}>
-      <Listbox.Button>{selected.name}</Listbox.Button>
+      <Listbox.Button>{selected?.name || "Select a " + title}</Listbox.Button>
       <Listbox.Options>
         {options.map((option) => (
-          <Listbox.Option key={option.id} value={slugify(option.name)}>
+          <Listbox.Option key={option.id} value={option}>
             {option.name}
           </Listbox.Option>
         ))}
