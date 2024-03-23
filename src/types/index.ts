@@ -18,5 +18,5 @@ export interface MultiSelectDropdownProps {
   title: string;
   options: Ingredient[];
   selected: Ingredient[] | null;
-  setSelected: (value: Ingredient[] | null) => void;
+  setSelected: React.Dispatch<React.SetStateAction<Ingredient[]>>;
 }

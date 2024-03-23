@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import Button from "./components/Button";
 import SingleSelectDropdown from "./components/SingleSelectDropdown";
 import MultiSelectDropdown from "./components/MultiSelectDropdown";
 import {
@@ -20,24 +19,16 @@ function App() {
   );
   const [selectedBread, setSelectedBread] = useState<Ingredient | null>(null);
   const [selectedCheese, setSelectedCheese] = useState<Ingredient | null>(null);
-  const [selectedSalads, setSelectedSalads] = useState<Ingredient[] | null>(
-    null
-  );
-  const [selectedSauces, setSelectedSauces] = useState<Ingredient[] | null>(
-    null
-  );
-  const [selectedExtras, setSelectedExtras] = useState<Ingredient[] | null>(
-    null
-  );
-  const [selectedToppings, setSelectedToppings] = useState<Ingredient[] | null>(
-    null
-  );
+  const [selectedSalads, setSelectedSalads] = useState<Ingredient[]>([]);
+  const [selectedSauces, setSelectedSauces] = useState<Ingredient[]>([]);
+  const [selectedExtras, setSelectedExtras] = useState<Ingredient[]>([]);
+  const [selectedToppings, setSelectedToppings] = useState<Ingredient[]>([]);
   return (
     <div className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-white space-y-4">
       <h1 className="font-black text-2xl w-full text-center font-dark-green">
         Subway Calculator
       </h1>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-4 relative">
         {/* Product */}
         <SingleSelectDropdown
           title={"Product"}

@@ -36,7 +36,7 @@
   "breads": [
     {
       "id": "b-1",
-      "name": "9-Grain Wheat Bread",
+      "name": "9-Grain Wheat",
       "calories": 165,
       "protein": 7.8,
       "carbs": 27,
@@ -44,7 +44,7 @@
     },
     {
       "id": "b-2",
-      "name": "Gluten-Free Bread",
+      "name": "Gluten-Free",
       "calories": 285,
       "protein": 3.1,
       "carbs": 56,
@@ -52,7 +52,7 @@
     },
     {
       "id": "b-3",
-      "name": "Hearty Italian Bread",
+      "name": "Hearty Italian",
       "calories": 186,
       "protein": 7.4,
       "carbs": 35,
@@ -60,7 +60,7 @@
     },
     {
       "id": "b-4",
-      "name": "Honey & Oat Bread",
+      "name": "Honey & Oat",
       "calories": 235,
       "protein": 9.5,
       "carbs": 41,
@@ -68,7 +68,7 @@
     },
     {
       "id": "b-5",
-      "name": "Italian Herbs & Cheese Bread",
+      "name": "Italian Herbs & Cheese",
       "calories": 195,
       "protein": 9.3,
       "carbs": 30,
@@ -76,7 +76,7 @@
     },
     {
       "id": "b-6",
-      "name": "Italian White Bread",
+      "name": "Italian White",
       "calories": 161,
       "protein": 6.9,
       "carbs": 29,
@@ -84,7 +84,7 @@
     },
     {
       "id": "b-7",
-      "name": "Wholegrain Bread",
+      "name": "Wholegrain",
       "calories": 207,
       "protein": 9.9,
       "carbs": 35,
@@ -368,7 +368,7 @@
     },
     {
       "id": "c-7",
-      "name": "Vegan CheeZe",
+      "name": "Vegan CheeZe (VE)",
       "calories": 59,
       "protein": 0,
       "carbs": 3.8,
