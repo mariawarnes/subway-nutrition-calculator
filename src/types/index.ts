@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface Ingredient {
   id: string;
   name: string;
@@ -7,16 +9,24 @@ export interface Ingredient {
   fat?: number;
 }
 
+export interface Preset {
+  name: string;
+  ingredients: Ingredient[];
+}
+
 export interface SingleSelectDropdownProps {
   title: string;
   options: Ingredient[];
   selected: Ingredient | null;
-  setSelected: (value: Ingredient | null) => void;
+  setSelected: Dispatch<React.SetStateAction<Ingredient | null>>;
+
+  className?: string;
 }
 
 export interface MultiSelectDropdownProps {
   title: string;
   options: Ingredient[];
-  selected: Ingredient[] | null;
-  setSelected: React.Dispatch<React.SetStateAction<Ingredient[]>>;
+  selected: Ingredient[];
+  setSelected: Dispatch<SetStateAction<Ingredient[]>>;
+  className?: string;
 }

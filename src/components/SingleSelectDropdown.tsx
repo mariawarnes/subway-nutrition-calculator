@@ -1,6 +1,6 @@
 import { Listbox } from "@headlessui/react";
 import { SingleSelectDropdownProps } from "../types";
-import { FaSquare, FaCheckSquare, FaCheck } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { IoChevronDownCircleSharp } from "react-icons/io5";
 
 const SingleSelectDropdown = ({
@@ -8,9 +8,10 @@ const SingleSelectDropdown = ({
   options,
   selected,
   setSelected,
+  className,
 }: SingleSelectDropdownProps) => {
   return (
-    <div className="relative text-sm">
+    <div className={`relative text-sm ${className}`}>
       <Listbox value={selected} onChange={setSelected}>
         <Listbox.Button className="relative text-dark-grey font-semibold w-full py-2 bg-light-green">
           {selected?.name || "Select a " + title}

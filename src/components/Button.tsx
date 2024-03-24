@@ -9,7 +9,7 @@ interface ButtonProps {
 const Button = ({ text, handleClick, className }: ButtonProps) => {
   return (
     <button
-      className={`rounded-full bg-yellow text-dark-green ${className}`}
+      className={`rounded-full inline-block px-4 py-1 bg-yellow text-dark-green ${className}`}
       onClick={handleClick}
     >
       {text}

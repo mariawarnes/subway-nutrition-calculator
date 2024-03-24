@@ -2,16 +2,16 @@ import { Listbox } from "@headlessui/react";
 import { MultiSelectDropdownProps } from "../types";
 import { FaCheck } from "react-icons/fa";
 import { IoChevronDownCircleSharp } from "react-icons/io5";
-import { useState } from "react";
 
 const MultiSelectDropdown = ({
   title,
   options,
   selected,
   setSelected,
+  className,
 }: MultiSelectDropdownProps) => {
   return (
-    <div className="relative text-sm">
+    <div className={`relative text-sm ${className}`}>
       <Listbox value={selected} onChange={setSelected} multiple>
         <Listbox.Button className="relative text-dark-grey font-semibold w-full py-2 bg-light-green">
           {selected?.map((single) => single.name).join(", ") ||

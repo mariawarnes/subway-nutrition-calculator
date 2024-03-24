@@ -36,7 +36,7 @@
   "breads": [
     {
       "id": "b-1",
-      "name": "9-Grain Wheat",
+      "name": "9-Grain Wheat [VE]",
       "calories": 165,
       "protein": 7.8,
       "carbs": 27,
@@ -44,7 +44,7 @@
     },
     {
       "id": "b-2",
-      "name": "Gluten-Free",
+      "name": "Gluten-Free [VE, GF]",
       "calories": 285,
       "protein": 3.1,
       "carbs": 56,
@@ -52,7 +52,7 @@
     },
     {
       "id": "b-3",
-      "name": "Hearty Italian",
+      "name": "Hearty Italian [VE]",
       "calories": 186,
       "protein": 7.4,
       "carbs": 35,
@@ -60,7 +60,7 @@
     },
     {
       "id": "b-4",
-      "name": "Honey & Oat",
+      "name": "Honey & Oat [V]",
       "calories": 235,
       "protein": 9.5,
       "carbs": 41,
@@ -68,7 +68,7 @@
     },
     {
       "id": "b-5",
-      "name": "Italian Herbs & Cheese",
+      "name": "Italian Herbs & Cheese [V]",
       "calories": 195,
       "protein": 9.3,
       "carbs": 30,
@@ -76,7 +76,7 @@
     },
     {
       "id": "b-6",
-      "name": "Italian White",
+      "name": "Italian White [VE]",
       "calories": 161,
       "protein": 6.9,
       "carbs": 29,
@@ -84,7 +84,7 @@
     },
     {
       "id": "b-7",
-      "name": "Wholegrain",
+      "name": "Wholegrain [VE]",
       "calories": 207,
       "protein": 9.9,
       "carbs": 35,
@@ -93,7 +93,7 @@
   ],
   "proteins": [
     {
-      "id": "p-1",
+      "id": "m-1",
       "name": "Big Beef Patty",
       "calories": 140,
       "protein": 10,
@@ -101,7 +101,7 @@
       "fat": 9.6
     },
     {
-      "id": "p-2",
+      "id": "m-2",
       "name": "Lincolnshire Sausage Patty",
       "calories": 121.5,
       "protein": 7,
@@ -109,7 +109,7 @@
       "fat": 9
     },
     {
-      "id": "p-3",
+      "id": "m-3",
       "name": "Chicken Tikka",
       "calories": 89,
       "protein": 18,
@@ -117,23 +117,23 @@
       "fat": 1.4
     },
     {
-      "id": "p-4",
-      "name": "Ham",
+      "id": "m-4",
+      "name": "Ham [GF]",
       "calories": 34,
       "protein": 5,
       "carbs": 1,
       "fat": 1
     },
     {
-      "id": "p-5",
-      "name": "Maple Cured Streaky Bacon",
+      "id": "m-5",
+      "name": "Maple Cured Streaky Bacon [GF]",
       "calories": 37,
       "protein": 3,
       "carbs": 0,
       "fat": 2.8
     },
     {
-      "id": "p-6",
+      "id": "m-6",
       "name": "Pork & Beef Meatballs (no sauce)",
       "calories": 188,
       "protein": 11,
@@ -141,7 +141,7 @@
       "fat": 13
     },
     {
-      "id": "p-7",
+      "id": "m-7",
       "name": "Pork & Beef Meatballs (with sauce)",
       "calories": 228,
       "protein": 12,
@@ -149,7 +149,7 @@
       "fat": 14
     },
     {
-      "id": "p-8",
+      "id": "m-8",
       "name": "Meatless Meatballs",
       "calories": 155,
       "protein": 14,
@@ -157,7 +157,7 @@
       "fat": 3.9
     },
     {
-      "id": "p-9",
+      "id": "m-9",
       "name": "Nacho Chicken Bites",
       "calories": 180,
       "protein": 11,
@@ -165,55 +165,55 @@
       "fat": 8.5
     },
     {
-      "id": "p-10",
-      "name": "Pepperoni",
+      "id": "m-10",
+      "name": "Pepperoni [GF]",
       "calories": 73,
       "protein": 3.6,
       "carbs": 1,
       "fat": 6.3
     },
     {
-      "id": "p-11",
-      "name": "Plant Patty",
+      "id": "m-11",
+      "name": "Plant Patty [VE]",
       "calories": 169,
       "protein": 11,
       "carbs": 10,
       "fat": 9
     },
     {
-      "id": "p-12",
-      "name": "Plant-based Steak",
+      "id": "m-12",
+      "name": "Plant-based Steak [VE]",
       "calories": 114,
       "protein": 9.2,
       "carbs": 7.3,
       "fat": 4.7
     },
     {
-      "id": "p-13",
-      "name": "Poached Egg",
+      "id": "m-13",
+      "name": "Poached Egg [V, GF]",
       "calories": 70,
       "protein": 6.4,
       "carbs": 0.5,
       "fat": 4.7
     },
     {
-      "id": "p-14",
-      "name": "Roast Chicken Breast Strips",
+      "id": "m-14",
+      "name": "Roast Chicken Breast Strips [GF]",
       "calories": 85,
       "protein": 16,
       "carbs": 1,
       "fat": 1
     },
     {
-      "id": "p-15",
-      "name": "Salami",
+      "id": "m-15",
+      "name": "Salami [GF]",
       "calories": 73,
       "protein": 4,
       "carbs": 0,
       "fat": 6.3
     },
     {
-      "id": "p-16",
+      "id": "m-16",
       "name": "Philly Steak",
       "calories": 86,
       "protein": 11,
@@ -221,31 +221,31 @@
       "fat": 1.42
     },
     {
-      "id": "p-17",
-      "name": "Tuna",
+      "id": "m-17",
+      "name": "Tuna Mayonnaise [GF]",
       "calories": 144.9,
       "protein": 12,
       "carbs": 2,
       "fat": 10
     },
     {
-      "id": "p-18",
-      "name": "Turkey Breast",
+      "id": "m-18",
+      "name": "Turkey Breast [GF]",
       "calories": 38,
       "protein": 8,
       "carbs": 0,
       "fat": 0.6
     },
     {
-      "id": "p-19",
-      "name": "Halal Meatballs",
+      "id": "m-19",
+      "name": "Halal Meatballs (Beef)",
       "calories": 223,
       "protein": 11,
       "carbs": 14,
       "fat": 14
     },
     {
-      "id": "p-20",
+      "id": "m-20",
       "name": "Halal Roast Chicken Breast Strips",
       "calories": 85,
       "protein": 16,
@@ -253,7 +253,7 @@
       "fat": 1
     },
     {
-      "id": "p-21",
+      "id": "m-21",
       "name": "Halal Chicken Tikka",
       "calories": 89,
       "protein": 18,
@@ -261,23 +261,23 @@
       "fat": 1.4
     },
     {
-      "id": "p-22",
-      "name": "Halal Pepperoni",
+      "id": "m-22",
+      "name": "Halal Pepperoni (Beef)",
       "calories": 73,
       "protein": 3.6,
       "carbs": 0,
       "fat": 6.3
     },
     {
-      "id": "p-23",
-      "name": "Halal Salami",
+      "id": "m-23",
+      "name": "Halal Salami (Beef)",
       "calories": 73,
       "protein": 3.6,
       "carbs": 0,
       "fat": 6.3
     },
     {
-      "id": "p-24",
+      "id": "m-24",
       "name": "Halal Steak",
       "calories": 86,
       "protein": 11,
@@ -285,7 +285,7 @@
       "fat": 1.4
     },
     {
-      "id": "p-25",
+      "id": "m-25",
       "name": "Halal Turkey Breast",
       "calories": 62,
       "protein": 11,
@@ -293,7 +293,7 @@
       "fat": 1.4
     },
     {
-      "id": "p-26",
+      "id": "m-26",
       "name": "Halal Turkey Ham",
       "calories": 103,
       "protein": 3.9,
@@ -301,7 +301,7 @@
       "fat": 1
     },
     {
-      "id": "p-27",
+      "id": "m-27",
       "name": "Halal Turkey Rashers",
       "calories": 155,
       "protein": 4.8,
@@ -309,7 +309,7 @@
       "fat": 5.3
     },
     {
-      "id": "p-28",
+      "id": "m-28",
       "name": "Halal Turkey Sausage Patty",
       "calories": 71,
       "protein": 8,
@@ -320,7 +320,7 @@
   "cheeses": [
     {
       "id": "c-1",
-      "name": "American-style Cheese (V)",
+      "name": "American-style Cheese [V]",
       "calories": 42,
       "protein": 2.3,
       "carbs": 0.4,
@@ -328,7 +328,7 @@
     },
     {
       "id": "c-2",
-      "name": "Monterey Jack Cheddar Slices (V)",
+      "name": "Monterey Jack Cheddar Slices [V]",
       "calories": 38,
       "protein": 2.3,
       "carbs": 0,
@@ -336,7 +336,7 @@
     },
     {
       "id": "c-3",
-      "name": "Mozzarella",
+      "name": "Mozzarella [V]",
       "calories": 74,
       "protein": 5.7,
       "carbs": 0.3,
@@ -344,7 +344,7 @@
     },
     {
       "id": "c-4",
-      "name": "Peppered Cheese (V)",
+      "name": "Peppered Cheese [V]",
       "calories": 45,
       "protein": 2.5,
       "carbs": 0.3,
@@ -352,7 +352,7 @@
     },
     {
       "id": "c-5",
-      "name": "Shredded Mozzarella & Cheddar Blend (V)",
+      "name": "Shredded Mozzarella & Cheddar Blend [V]",
       "calories": 45,
       "protein": 3.2,
       "carbs": 0.6,
@@ -360,7 +360,7 @@
     },
     {
       "id": "c-6",
-      "name": "Sliced Brie Cheese",
+      "name": "Sliced Brie Cheese [V]",
       "calories": 91,
       "protein": 4.2,
       "carbs": 1,
@@ -368,7 +368,7 @@
     },
     {
       "id": "c-7",
-      "name": "Vegan CheeZe (VE)",
+      "name": "Vegan CheeZe [VE]",
       "calories": 59,
       "protein": 0,
       "carbs": 3.8,
@@ -378,7 +378,7 @@
   "sauces": [
     {
       "id": "s-1",
-      "name": "Caramelised Red Onion in Balsamic Vinegar",
+      "name": "Caramelised Red Onion in Balsamic Vinegar [VE, GF]",
       "calories": 9,
       "protein": 0,
       "carbs": 2,
@@ -386,7 +386,7 @@
     },
     {
       "id": "s-2",
-      "name": "Chipotle Southwest Sauce (V)",
+      "name": "Chipotle Southwest Sauce [V, GF]",
       "calories": 58,
       "protein": 0.1,
       "carbs": 1.2,
@@ -394,7 +394,7 @@
     },
     {
       "id": "s-4",
-      "name": "Extra Spicy Chipotle Sauce (V)",
+      "name": "Extra Spicy Chipotle Sauce [V, GF]",
       "calories": 60,
       "protein": 0.2,
       "carbs": 1.1,
@@ -402,7 +402,7 @@
     },
     {
       "id": "s-3",
-      "name": "Creamy Caesar Sauce",
+      "name": "Creamy Caesar Sauce [V, GF]",
       "calories": 7,
       "protein": 0.1,
       "carbs": 0.2,
@@ -410,7 +410,7 @@
     },
     {
       "id": "s-5",
-      "name": "Garlic & Herb Sauce (VE)",
+      "name": "Garlic & Herb Sauce [VE, GF]",
       "calories": 51,
       "protein": 0,
       "carbs": 0.6,
@@ -418,7 +418,7 @@
     },
     {
       "id": "s-6",
-      "name": "Hickory Smoked BBQ Sauce",
+      "name": "Hickory Smoked BBQ Sauce [V]",
       "calories": 24,
       "protein": 0.1,
       "carbs": 5.8,
@@ -426,7 +426,7 @@
     },
     {
       "id": "s-7",
-      "name": "Honey & Wholegrain Mustard Sauce",
+      "name": "Honey & Wholegrain Mustard Sauce [V, GF]",
       "calories": 29,
       "protein": 0.3,
       "carbs": 2.7,
@@ -434,7 +434,7 @@
     },
     {
       "id": "s-8",
-      "name": "HP Brown Sauce",
+      "name": "HP Brown Sauce [V]",
       "calories": 17,
       "protein": 0.1,
       "carbs": 4,
@@ -442,7 +442,7 @@
     },
     {
       "id": "s-9",
-      "name": "Lite Mayonnaise",
+      "name": "Lite Mayonnaise [V, GF]",
       "calories": 48,
       "protein": 0,
       "carbs": 1.2,
@@ -450,7 +450,7 @@
     },
     {
       "id": "s-10",
-      "name": "Basil Pesto",
+      "name": "Basil Pesto [V, GF]",
       "calories": 24,
       "protein": 0.7,
       "carbs": 1.3,
@@ -458,7 +458,7 @@
     },
     {
       "id": "s-11",
-      "name": "Salsa",
+      "name": "Salsa [VE, GF]",
       "calories": 13,
       "protein": 0.5,
       "carbs": 1.7,
@@ -466,7 +466,7 @@
     },
     {
       "id": "s-12",
-      "name": "Sriracha Hot Chilli Sauce",
+      "name": "Sriracha Hot Chilli Sauce [V, GF]",
       "calories": 18,
       "protein": 0.2,
       "carbs": 2.7,
@@ -474,7 +474,7 @@
     },
     {
       "id": "s-13",
-      "name": "Sticky Sweet Chilli Sauce",
+      "name": "Sticky Sweet Chilli Sauce [VE]",
       "calories": 30,
       "protein": 0.1,
       "carbs": 7.5,
@@ -482,7 +482,7 @@
     },
     {
       "id": "s-14",
-      "name": "Sweet Onion Sauce",
+      "name": "Sweet Onion Sauce [VE, GF]",
       "calories": 23,
       "protein": 0.1,
       "carbs": 5.6,
@@ -490,7 +490,7 @@
     },
     {
       "id": "s-15",
-      "name": "Teriyaki Sauce (VE)",
+      "name": "Teriyaki Sauce [VE]",
       "calories": 25,
       "protein": 0.4,
       "carbs": 5.5,
@@ -498,7 +498,7 @@
     },
     {
       "id": "s-16",
-      "name": "Tomato Ketchup (VE)",
+      "name": "Tomato Ketchup [VE, GF]",
       "calories": 14,
       "protein": 0.2,
       "carbs": 3.2,
@@ -506,7 +506,7 @@
     },
     {
       "id": "s-17",
-      "name": "Mango Habanero Sauce (VE)",
+      "name": "Mango Habanero Sauce [VE, GF]",
       "calories": 23,
       "protein": 0,
       "fat": 0
@@ -571,7 +571,7 @@
     },
     {
       "id": "v-8",
-      "name": "Red onions",
+      "name": "Red Onions",
       "calories": 3,
       "protein": 0.1,
       "carbs": 0.6,
@@ -612,8 +612,16 @@
       "fat": 1
     },
     {
+      "id": "e-11",
+      "name": "Substack® (Hash browns) [VE]",
+      "calories": 92,
+      "protein": 1.2,
+      "carbs": 11,
+      "fat": 5.5
+    },
+    {
       "id": "e-3",
-      "name": "Super Substack® (Hash browns + Bacon)",
+      "name": "Super Substack® (Hash browns + Bacon) [GF]",
       "calories": 129,
       "protein": 3.9,
       "carbs": 12,
@@ -621,7 +629,7 @@
     },
     {
       "id": "e-4",
-      "name": "Super Substack® (Hash browns + Turkey Rashers)",
+      "name": "Super Substack® (Hash browns + Turkey Rashers) [GF]",
       "calories": 121,
       "protein": 5.9,
       "carbs": 12,
@@ -629,7 +637,7 @@
     },
     {
       "id": "e-5",
-      "name": "Turkey",
+      "name": "Turkey Breast [GF]",
       "calories": 38,
       "protein": 8,
       "carbs": 0,
@@ -637,7 +645,7 @@
     },
     {
       "id": "e-6",
-      "name": "Turkey Ham",
+      "name": "Turkey Ham [GF]",
       "calories": 103,
       "protein": 3.9,
       "carbs": 0,
@@ -653,7 +661,7 @@
     },
     {
       "id": "e-8",
-      "name": "Doritos®",
+      "name": "Doritos® [V]",
       "calories": 95,
       "protein": 4,
       "carbs": 7,
@@ -661,17 +669,25 @@
     },
     {
       "id": "e-9",
-      "name": "Garlic oil",
+      "name": "Garlic Infused Oil [VE]",
       "calories": 189,
       "protein": 5,
       "carbs": 4,
       "fat": 17
+    },
+    {
+      "id": "e-10",
+      "name": "Poached Egg [V]",
+      "calories": 70,
+      "protein": 6.4,
+      "carbs": 0.5,
+      "fat": 4.7
     }
   ],
   "toppings": [
     {
       "id": "t-1",
-      "name": "Chili Flakes",
+      "name": "Chilli Flakes [VE, GF]",
       "calories": 4,
       "protein": 0.1,
       "carbs": 0.4,
@@ -679,7 +695,7 @@
     },
     {
       "id": "t-2",
-      "name": "Crispy Onions",
+      "name": "Crispy Onions [VE]",
       "calories": 41,
       "protein": 0.4,
       "carbs": 2.9,
@@ -687,7 +703,7 @@
     },
     {
       "id": "t-3",
-      "name": "Mixed Peppercorns",
+      "name": "Mixed Peppercorns [VE, GF]",
       "calories": 3,
       "protein": 0.1,
       "carbs": 1,
@@ -695,7 +711,7 @@
     },
     {
       "id": "t-4",
-      "name": "Sea Salt",
+      "name": "Sea Salt [VE, GF]",
       "calories": 0,
       "protein": 0,
       "carbs": 0,
@@ -703,7 +719,7 @@
     },
     {
       "id": "t-55",
-      "name": "Multi-Seed Mix",
+      "name": "Multi-Seed Mix [VE, GF]",
       "calories": 58,
       "protein": 2.7,
       "carbs": 0.7,
