@@ -6,3 +6,15 @@ body {
   @apply bg-light-green;
   @apply font-normal;
 }
+
+p,
+label {
+  @apply font-extralight;
+  @apply text-grey;
+  @apply text-sm;
+}
+
+.nutrition-info tr {
+  border-bottom: 2px dotted;
+  @apply border-grey;
+}

@@ -13,7 +13,7 @@ const SingleSelectDropdown = ({
   return (
     <div className={`relative text-sm ${className}`}>
       <Listbox value={selected} onChange={setSelected}>
-        <Listbox.Button className="relative text-dark-grey font-semibold w-full py-2 bg-light-green">
+        <Listbox.Button className="relative text-dark-grey font-semibold w-full p-2 bg-light-green pr-6">
           {selected?.name || "Select a " + title}
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <IoChevronDownCircleSharp
@@ -26,7 +26,7 @@ const SingleSelectDropdown = ({
           {options.map((option) => (
             <Listbox.Option
               className={({ active, selected }) =>
-                `relative flex flex-row p-3 select-none  font-semibold ${
+                `relative flex flex-row p-3 select-none font-semibold hover:bg-dark-green hover:text-white ${
                   active ?? "bg-dark-green text-white"
                 }
                 ${selected ? "bg-dark-green text-white" : "text-dark-grey"}`
@@ -34,14 +34,18 @@ const SingleSelectDropdown = ({
               key={option.id}
               value={option}
             >
-              {selected ? (
-                <span className="flex h-5 w-5 flex-row items-center mr-3 bg-green text-dark-green">
-                  <FaCheck className="m-[0.125rem]" aria-hidden="true" />
-                </span>
-              ) : (
-                <span className="flex h-5 w-5 flex-row items-center mr-3 bg-green text-dark-green"></span>
+              {({ selected }) => (
+                <>
+                  <span
+                    className={`flex h-5 w-5 flex-row items-center mr-3 bg-green text-dark-green`}
+                  >
+                    {selected && (
+                      <FaCheck className="m-[0.125rem]" aria-hidden="true" />
+                    )}
+                  </span>
+                  {option.name}
+                </>
               )}
-              {option.name}
             </Listbox.Option>
           ))}
         </Listbox.Options>

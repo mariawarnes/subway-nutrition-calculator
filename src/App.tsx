@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "./App.css";
 import SingleSelectDropdown from "./components/SingleSelectDropdown";
 import MultiSelectDropdown from "./components/MultiSelectDropdown";
@@ -13,10 +13,11 @@ import {
   toppings,
 } from "./data/ingredients.json";
 import { presets } from "./data/presets.json";
-import { Ingredient, Preset } from "./types";
+import { Ingredient } from "./types";
 import Button from "./components/Button";
 import { Disclosure } from "@headlessui/react";
 import { IoChevronDownCircleSharp } from "react-icons/io5";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState<Ingredient | null>(
@@ -25,23 +26,24 @@ function App() {
   const [selectedBread, setSelectedBread] = useState<Ingredient | null>(null);
   const [selectedProteins, setSelectedProteins] = useState<Ingredient[]>([]);
   const [doubleProtein, setDoubleProtein] = useState<boolean>(false);
-  const [selectedCheese, setSelectedCheese] = useState<Ingredient | null>(null);
+  const [selectedCheeses, setSelectedCheeses] = useState<Ingredient[]>([]);
   const [selectedSalads, setSelectedSalads] = useState<Ingredient[]>([]);
   const [selectedSauces, setSelectedSauces] = useState<Ingredient[]>([]);
   const [selectedExtras, setSelectedExtras] = useState<Ingredient[]>([]);
   const [selectedToppings, setSelectedToppings] = useState<Ingredient[]>([]);
-  const [selectedIngredientsJSON, setSelectedIngredientsJSON] = useState("");
+  const [activePreset, setActivePreset] = useState<string | null>(null);
 
   const clearSelected = () => {
     setSelectedProduct(null);
     setSelectedBread(null);
     setSelectedProteins([]);
     setDoubleProtein(false);
-    setSelectedCheese(null);
+    setSelectedCheeses(null);
     setSelectedSalads([]);
     setSelectedSauces([]);
     setSelectedExtras([]);
     setSelectedToppings([]);
+    setActivePreset(null);
   };
 
   const selectPreset = (
@@ -73,7 +75,7 @@ function App() {
     setSelectedProteins(filterByPrefixMulti("m-"));
     // Set Italian White as default for presets
     setSelectedBread(ingredients.find((ingredient) => ingredient.id == "b-6"));
-    setSelectedCheese(filterByPrefixSingle("c-"));
+    setSelectedCheeses(filterByPrefixMulti("c-"));
     setSelectedSauces(filterByPrefixMulti("s-"));
     setSelectedSalads(filterByPrefixMulti("v-"));
     setSelectedExtras(filterByPrefixMulti("e-"));
@@ -81,14 +83,14 @@ function App() {
   };
 
   // Calculate the total nutritional information
-  const calculateTotals = useMemo(() => {
+  const calculateTotalsFunction = () => {
     let totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
 
     const allSelectedIngredients = [
       selectedProduct,
       selectedBread,
       ...selectedProteins,
-      selectedCheese,
+      selectedCheeses,
       ...selectedSalads,
       ...selectedSauces,
       ...selectedExtras,
@@ -102,10 +104,18 @@ function App() {
         ingredient.carbs &&
         ingredient.fat
       ) {
-        totals.calories += ingredient?.calories;
-        totals.protein += ingredient?.protein;
-        totals.carbs += ingredient.carbs;
-        totals.fat += ingredient.fat;
+        // Double the protein if doubleProtein is true and it starts with "m-"
+        if (doubleProtein && ingredient.id.startsWith("m-")) {
+          totals.calories += ingredient?.calories * 2;
+          totals.protein += ingredient?.protein * 2;
+          totals.carbs += ingredient.carbs * 2;
+          totals.fat += ingredient.fat * 2;
+        } else {
+          totals.calories += ingredient?.calories;
+          totals.protein += ingredient?.protein;
+          totals.carbs += ingredient.carbs;
+          totals.fat += ingredient.fat;
+        }
       }
     });
 
@@ -119,17 +129,14 @@ function App() {
       };
     }
 
-    // Double the protein if doubleProtein is true
-    if (doubleProtein) {
-      totals.protein = totals.protein * 2;
-    }
-
     return totals;
-  }, [
+  };
+
+  const calculateTotals = useMemo(calculateTotalsFunction, [
     selectedProduct,
     selectedBread,
     selectedProteins,
-    selectedCheese,
+    selectedCheeses,
     selectedSalads,
     selectedSauces,
     selectedExtras,
@@ -137,38 +144,32 @@ function App() {
     doubleProtein,
   ]);
 
-  // useEffect(() => {
-  //   const ingredients = {
-  //     selectedProduct,
-  //     selectedBread,
-  //     selectedProteins,
-  //     selectedCheese,
-  //     selectedSalads,
-  //     selectedSauces,
-  //     selectedExtras,
-  //     selectedToppings,
-  //   };
-  //   setSelectedIngredientsJSON(JSON.stringify(ingredients, null, 2));
-  // }, [
-  //   selectedProduct,
-  //   selectedBread,
-  //   selectedProteins,
-  //   selectedCheese,
-  //   selectedSalads,
-  //   selectedSauces,
-  //   selectedExtras,
-  //   selectedToppings,
-  // ]);
+  const handleDoubleProtein = () => {
+    setDoubleProtein(!doubleProtein);
+    calculateTotalsFunction();
+  };
 
   return (
     <div className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-white">
-      <h1 className="font-black text-2xl w-full text-dark-green">
+      <h1 className="font-black mb-2 text-2xl w-full text-dark-green">
         Subway Nutrition Calculator
       </h1>
-      {/* <p>{selectedIngredientsJSON}</p> */}
-      <hr className="" />
-      <p className="font-light text-dark-grey">text and stuff</p>
-      <hr className="" />
+      <hr className="border-dotted border-t-2 border-grey" />
+      <p className="my-2">
+        Based on the nutritional values available at{" "}
+        <a
+          target="_blank"
+          rel="nofollow noopener"
+          className="underline"
+          href="https://www.subway.com/en-GB/"
+        >
+          {" "}
+          SUBWAY® UK & Ireland{" "}
+          <FaExternalLinkAlt className="ml-1 relative bottom-[2px] inline" />
+        </a>
+        , values for other regions may vary.
+      </p>
+      <hr className="border-dotted border-t-2 border-grey" />
       <Disclosure>
         <Disclosure.Button
           className={
@@ -187,22 +188,36 @@ function App() {
           <div className="space-y-2 space-x-1 mb-4">
             {presets.map((preset) => (
               <Button
+                key={preset.id} // Ensure each button has a unique key
                 text={preset.name}
-                handleClick={() =>
-                  selectPreset(
-                    [
-                      ...products,
-                      ...breads,
-                      ...proteins,
-                      ...cheeses,
-                      ...salads,
-                      ...sauces,
-                      ...extras,
-                      ...toppings,
-                    ],
-                    preset.ingredients
-                  )
-                }
+                handleClick={() => {
+                  // If the current preset is already active, deactivate it
+                  if (activePreset === preset.id) {
+                    setActivePreset(null);
+                    clearSelected(); // Assuming you have a function to clear the selection
+                  } else {
+                    // Activate the current preset and apply its settings
+                    selectPreset(
+                      [
+                        ...products,
+                        ...breads,
+                        ...proteins,
+                        ...cheeses,
+                        ...salads,
+                        ...sauces,
+                        ...extras,
+                        ...toppings,
+                      ],
+                      preset.ingredients
+                    );
+                    setActivePreset(preset.id);
+                  }
+                }}
+                className={`${
+                  activePreset === preset.id
+                    ? "bg-yellow text-dark-green"
+                    : "bg-light-grey text-white"
+                }`}
               />
             ))}
           </div>
@@ -234,21 +249,23 @@ function App() {
             setSelected={setSelectedProteins}
             className="grow"
           />
-          <div className="ml-2">
+          <div className="ml-2 flex items-center">
             <input
+              id="double"
               type="checkbox"
-              onChange={() => setDoubleProtein(doubleProtein)}
+              onChange={handleDoubleProtein}
               className="mr-2"
+              checked={doubleProtein}
             />
-            Double?
+            <label htmlFor="double">Double?</label>
           </div>
         </div>
         {/* Cheese */}
-        <SingleSelectDropdown
+        <MultiSelectDropdown
           title={"Cheese"}
           options={cheeses}
-          selected={selectedCheese}
-          setSelected={setSelectedCheese}
+          selected={selectedCheeses}
+          setSelected={setSelectedCheeses}
         />
         {/* Salads */}
         <MultiSelectDropdown
@@ -278,17 +295,44 @@ function App() {
           selected={selectedToppings}
           setSelected={setSelectedToppings}
         />
-        <Button text="Clear All" handleClick={clearSelected} />
+        <Button text="Reset" handleClick={clearSelected} />
       </div>
 
       {/* Display the nutritional information */}
       <div className="nutrition-info pt-4">
-        <h2 className="text-lg font-bold">Nutritional Information:</h2>
-        <p>Calories: {Math.round(calculateTotals.calories)} kcal</p>
-        <p>Protein: {Math.round(calculateTotals.protein)}g</p>
-        <p>Carbs: {Math.round(calculateTotals.carbs)}g</p>
-        <p>Fat: {Math.round(calculateTotals.fat)}g</p>
+        <h2 className="text-lg text-dark-green">Nutrition information</h2>
+        <p>Adults need around 2000 kcal a day.</p>
+        <table className="w-full text-sm">
+          <thead className="sr-only">
+            <tr>
+              <th>Nutrient</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="font-bold">Energy (kcal)</td>
+              <td>{Math.round(calculateTotals.calories)}</td>
+            </tr>
+            <tr>
+              <td className="font-bold">Protein (g)</td>
+              <td>{Math.round(calculateTotals.protein)}</td>
+            </tr>
+            <tr>
+              <td className="font-bold">Carbohydrate (g)</td>
+              <td>{Math.round(calculateTotals.carbs)}</td>
+            </tr>
+            <tr>
+              <td className="font-bold">Fat (g)</td>
+              <td>{Math.round(calculateTotals.fat)}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <p className="text-xs my-2">
+        SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
+        {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
+      </p>
     </div>
   );
 }
