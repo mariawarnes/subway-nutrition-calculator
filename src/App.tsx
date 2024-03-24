@@ -38,7 +38,7 @@ function App() {
     setSelectedBread(null);
     setSelectedProteins([]);
     setDoubleProtein(false);
-    setSelectedCheeses(null);
+    setSelectedCheeses([]);
     setSelectedSalads([]);
     setSelectedSauces([]);
     setSelectedExtras([]);
@@ -49,7 +49,7 @@ function App() {
   const selectPreset = (
     ingredients: Ingredient[],
     presetIngredientIds: string[]
-  ) => {
+  ): void => {
     // Ensure ingredients data is accessible here, either pass as argument or import directly
 
     // Function to filter ingredients by prefix for multi-select
@@ -60,21 +60,15 @@ function App() {
         )
       );
 
-    // Function to filter ingredient by prefix for single-select
-    const filterByPrefixSingle = (prefix: string) =>
-      ingredients.find((ingredient: { id: string }) =>
-        presetIngredientIds.some(
-          (id: string) => ingredient.id === id && id.startsWith(prefix)
-        )
-      );
-
     // Set 6-inch as default for presets
     setSelectedProduct(
-      ingredients.find((ingredient) => ingredient.id == "p-1")
+      ingredients.find((ingredient) => ingredient.id == "p-1") ?? null
     );
     setSelectedProteins(filterByPrefixMulti("m-"));
     // Set Italian White as default for presets
-    setSelectedBread(ingredients.find((ingredient) => ingredient.id == "b-6"));
+    setSelectedBread(
+      ingredients.find((ingredient) => ingredient.id == "b-6") ?? null
+    );
     setSelectedCheeses(filterByPrefixMulti("c-"));
     setSelectedSauces(filterByPrefixMulti("s-"));
     setSelectedSalads(filterByPrefixMulti("v-"));
@@ -90,32 +84,40 @@ function App() {
       selectedProduct,
       selectedBread,
       ...selectedProteins,
-      selectedCheeses,
+      ...selectedCheeses,
       ...selectedSalads,
       ...selectedSauces,
       ...selectedExtras,
       ...selectedToppings,
-    ].filter(Boolean); // Remove any null values
+    ].filter(Boolean); // This only removes null, but not arrays
 
     allSelectedIngredients.forEach((ingredient) => {
-      if (
-        ingredient?.calories &&
-        ingredient.protein &&
-        ingredient.carbs &&
-        ingredient.fat
-      ) {
-        // Double the protein if doubleProtein is true and it starts with "m-"
-        if (doubleProtein && ingredient.id.startsWith("m-")) {
-          totals.calories += ingredient?.calories * 2;
-          totals.protein += ingredient?.protein * 2;
-          totals.carbs += ingredient.carbs * 2;
-          totals.fat += ingredient.fat * 2;
-        } else {
-          totals.calories += ingredient?.calories;
-          totals.protein += ingredient?.protein;
-          totals.carbs += ingredient.carbs;
-          totals.fat += ingredient.fat;
-        }
+      // Check if the ingredient is not an array and not null
+      if (ingredient && !Array.isArray(ingredient)) {
+        const multiplier =
+          doubleProtein && ingredient.id.startsWith("m-") ? 2 : 1;
+        totals.calories += (ingredient.calories ?? 0) * multiplier;
+        totals.protein += (ingredient.protein ?? 0) * multiplier;
+        totals.carbs += (ingredient.carbs ?? 0) * multiplier;
+        totals.fat += (ingredient.fat ?? 0) * multiplier;
+      } else if (Array.isArray(ingredient)) {
+        // If it's an array, iterate over the items
+        ingredient.forEach((item) => {
+          if (item) {
+            // Ensure item is not null
+            let multiplier = 1;
+            // Double the protein values for certain conditions
+            if (doubleProtein && item.id.startsWith("m-")) {
+              multiplier = 2;
+            }
+
+            // Aggregate totals
+            totals.calories += item.calories * multiplier;
+            totals.protein += item.protein * multiplier;
+            totals.carbs += item.carbs * multiplier;
+            totals.fat += item.fat * multiplier;
+          }
+        });
       }
     });
 
@@ -144,7 +146,7 @@ function App() {
     doubleProtein,
   ]);
 
-  const handleDoubleProtein = () => {
+  const handleDoubleProtein = (): void => {
     setDoubleProtein(!doubleProtein);
     calculateTotalsFunction();
   };
