@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# Subway Nutrition Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<table>
+<tbody><tr>
+<td><strong>Language</strong></td>
+<td><img src="https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white" alt="TypeScript"></td>
+</tr>
+<tr>
+<td><strong>Framework</strong></td>
+<td><img src="https://img.shields.io/badge/React-%23323335.svg?style=flat&logo=react&logoColor=%2378D3FA" alt="React"></td>
+</tr>
+<tr>
+<td><strong>Compiler</strong></td>
+<td><img src="https://img.shields.io/badge/SWC-%23F0C66A.svg?style=flat&logo=swc&logoColor=black" alt="SWC"></td>
+</tr>
+<tr>
+<td><strong>Styles</strong></td>
+<td><img src="https://img.shields.io/badge/Tailwind-%23006AFF.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind"></td>
+</tr>
+<tr>
+<td><strong>Formatting &amp; Linting</strong></td>
+<td><img src="https://img.shields.io/badge/Prettier-%23F7B93E.svg?style=flat&logo=prettier&logoColor=black" alt="Prettier"> </tr>
+</tbody></table>
 
-Currently, two official plugins are available:
+The **Subway Nutrition Calculator** is a web application designed to provide a user-friendly alternative to the official Subway nutritional calculator, which I find difficult to use, especially on mobile devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- **Calculate Macronutrients and Calories**: Quickly calculate the nutritional value of your Subway meal, focusing on macronutrients and total caloric intake.
+- **Preset Menu Selections**: Use preset options to explore nutritional information for Subway's signature and saver series menus.
+- **Responsive Design**: Optimized for both desktop and mobile use, ensuring you can access nutritional information on the go.
 
-## Expanding the ESLint configuration
+<p align="center">
+  <a href="https://subway-nutrition-calculator.netlify.com">
+    <img src="https://img.shields.io/badge/Live Demo-00C7B7.svg?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo on Netlify">
+  </a>
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
