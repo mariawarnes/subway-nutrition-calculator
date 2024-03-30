@@ -22,7 +22,6 @@
 <td><img src="https://img.shields.io/badge/Prettier-%23F7B93E.svg?style=flat&logo=prettier&logoColor=black" alt="Prettier"> </tr>
 </tbody></table>
 
-## Introduction
 The **Subway Nutrition Calculator** is a web application designed to provide a user-friendly alternative to the official Subway nutritional calculator, which I find difficult to use, especially on mobile devices.
 
 ## Features
