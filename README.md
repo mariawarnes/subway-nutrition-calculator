@@ -35,3 +35,4 @@ The **Subway Nutrition Calculator** is a web application designed to provide a u
   </a>
 </p>
 
+![img](https://subway-nutrition-calculator.netlify.app/thumbnail.jpg)
