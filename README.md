@@ -1,5 +1,14 @@
 # Subway Nutrition Calculator
 
+Single-Page React App tool designed to provide a user-friendly alternative to the official Subway nutritional calculator.
+
+## Features
+- Full UK Signature and Savers preset options with [JSON](https://www.json.org/json-en.html) data storage
+- Real-time calculations with React's [useMemo](https://react.dev/reference/react/useMemo) Hook
+- Accessible components with [Headless UI](https://headlessui.com/react/listbox)
+
+## Architecture
+
 <table>
 <tbody><tr>
 <td><strong>Language</strong></td>
@@ -22,17 +31,7 @@
 <td><img src="https://img.shields.io/badge/Prettier-%23F7B93E.svg?style=flat&logo=prettier&logoColor=black" alt="Prettier"> </tr>
 </tbody></table>
 
-The **Subway Nutrition Calculator** is a web application designed to provide a user-friendly alternative to the official Subway nutritional calculator, which I find difficult to use, especially on mobile devices.
-
-## Features
-- **Calculate Macronutrients and Calories**: Quickly calculate the nutritional value of your Subway meal, focusing on macronutrients and total caloric intake.
-- **Preset Menu Selections**: Use preset options to explore nutritional information for Subway's signature and saver series menus.
-- **Responsive Design**: Optimized for both desktop and mobile use, ensuring you can access nutritional information on the go.
-
-<p align="center">
-  <a href="https://subway-nutrition-calculator.netlify.com">
-    <img src="https://img.shields.io/badge/Live Demo-00C7B7.svg?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo on Netlify">
-  </a>
-</p>
+## Demo
+[https://subway-nutrition-calculator.netlify.com](https://subway-nutrition-calculator.netlify.com)
 
 [![img](https://subway-nutrition-calculator.netlify.app/thumbnail.jpg)](https://subway-nutrition-calculator.netlify.com)
