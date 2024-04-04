@@ -12,23 +12,23 @@ Single-Page React App tool designed to provide a user-friendly alternative to th
 <table>
 <tbody><tr>
 <td><strong>Language</strong></td>
-<td><img src="https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white" alt="TypeScript"></td>
+<td><a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white" alt="TypeScript"></a></td>
 </tr>
 <tr>
 <td><strong>Framework</strong></td>
-<td><img src="https://img.shields.io/badge/React-%23323335.svg?style=flat&logo=react&logoColor=%2378D3FA" alt="React"></td>
+<td><a href="https://react.dev"><img src="https://img.shields.io/badge/React-%23323335.svg?style=flat&logo=react&logoColor=%2378D3FA" alt="React"></a></td>
 </tr>
 <tr>
-<td><strong>Compiler</strong></td>
-<td><img src="https://img.shields.io/badge/SWC-%23F0C66A.svg?style=flat&logo=swc&logoColor=black" alt="SWC"></td>
+<td><strong>Tooling</strong></td>
+<td><a href="https://vitejs.dev"><img src="https://img.shields.io/badge/Vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white" alt="Vite"/></a> <a href="https://swc.rs"><img src="https://img.shields.io/badge/SWC-%23F0C66A.svg?style=flat&logo=swc&logoColor=black" alt="SWC"></a></td>
 </tr>
 <tr>
 <td><strong>Styles</strong></td>
-<td><img src="https://img.shields.io/badge/Tailwind-%23006AFF.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind"></td>
+<td><a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-%23006AFF.svg?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind"></a></td>
 </tr>
 <tr>
 <td><strong>Formatting &amp; Linting</strong></td>
-<td><img src="https://img.shields.io/badge/Prettier-%23F7B93E.svg?style=flat&logo=prettier&logoColor=black" alt="Prettier"> </tr>
+<td><a href="https://prettier.io"><img src="https://img.shields.io/badge/Prettier-%23F7B93E.svg?style=flat&logo=prettier&logoColor=black" alt="Prettier"></a></tr>
 </tbody></table>
 
 ## Demo
