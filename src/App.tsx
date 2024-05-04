@@ -152,190 +152,201 @@ function App() {
   };
 
   return (
-    <div className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-white">
-      <h1 className="font-black mb-2 text-2xl w-full text-dark-green">
-        Subway Nutrition Calculator
-      </h1>
-      <hr className="border-dotted border-t-2 border-grey" />
-      <p className="my-2">
-        Based on the nutritional values available at{" "}
-        <a
-          target="_blank"
-          rel="nofollow noopener"
-          className="underline"
-          href="https://www.subway.com/en-GB/"
-        >
-          {" "}
-          SUBWAY® UK & Ireland{" "}
-          <FaExternalLinkAlt className="ml-1 relative bottom-[2px] inline" />
-        </a>
-        , values for other regions may vary.
-      </p>
-      <hr className="border-dotted border-t-2 border-grey" />
-      <Disclosure>
-        <Disclosure.Button
-          className={
-            "relative my-4 pr-8 rounded-full inline-block px-4 py-1 bg-yellow text-dark-green"
-          }
-        >
-          Signatures & Savers
-          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-            <IoChevronDownCircleSharp
-              className="text-grey text-base"
-              aria-hidden="true"
-            />
-          </span>
-        </Disclosure.Button>
-        <Disclosure.Panel>
-          <div className="space-y-2 space-x-1 mb-4">
-            {presets.map((preset) => (
-              <Button
-                key={preset.id} // Ensure each button has a unique key
-                text={preset.name}
-                handleClick={() => {
-                  // If the current preset is already active, deactivate it
-                  if (activePreset === preset.id) {
-                    setActivePreset(null);
-                    clearSelected(); // Assuming you have a function to clear the selection
-                  } else {
-                    // Activate the current preset and apply its settings
-                    selectPreset(
-                      [
-                        ...products,
-                        ...breads,
-                        ...proteins,
-                        ...cheeses,
-                        ...salads,
-                        ...sauces,
-                        ...extras,
-                        ...toppings,
-                      ],
-                      preset.ingredients
-                    );
-                    setActivePreset(preset.id);
-                  }
-                }}
-                className={`${
-                  activePreset === preset.id
-                    ? "bg-yellow text-dark-green"
-                    : "bg-light-grey text-white"
-                }`}
+    <>
+      <section className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-white">
+        <h1 className="font-black mb-2 text-2xl w-full text-dark-green">
+          Subway Nutrition Calculator
+        </h1>
+        <hr className="border-dotted border-t-2 border-grey" />
+        <p className="my-2">
+          Based on the nutritional values available at{" "}
+          <a
+            target="_blank"
+            rel="nofollow noopener"
+            className="underline"
+            href="https://www.subway.com/en-GB/"
+          >
+            {" "}
+            SUBWAY® UK & Ireland{" "}
+            <FaExternalLinkAlt className="ml-1 relative bottom-[2px] inline" />
+          </a>
+          , values for other regions may vary.
+        </p>
+        <hr className="border-dotted border-t-2 border-grey" />
+        <Disclosure>
+          <Disclosure.Button
+            className={
+              "relative my-4 pr-8 rounded-full inline-block px-4 py-1 bg-yellow text-dark-green"
+            }
+          >
+            Signatures & Savers
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+              <IoChevronDownCircleSharp
+                className="text-grey text-base"
+                aria-hidden="true"
               />
-            ))}
-          </div>
-        </Disclosure.Panel>
-      </Disclosure>
-      <div className="flex flex-col space-y-4 relative">
-        {/* Product */}
-        <SingleSelectDropdown
-          title={"Product"}
-          options={products}
-          selected={selectedProduct}
-          setSelected={setSelectedProduct}
-        />
-        {/* Bread */}
-        {(selectedProduct?.id == "p-1" || selectedProduct?.id == "p-2") && (
+            </span>
+          </Disclosure.Button>
+          <Disclosure.Panel>
+            <div className="space-y-2 space-x-1 mb-4">
+              {presets.map((preset) => (
+                <Button
+                  key={preset.id} // Ensure each button has a unique key
+                  text={preset.name}
+                  handleClick={() => {
+                    // If the current preset is already active, deactivate it
+                    if (activePreset === preset.id) {
+                      setActivePreset(null);
+                      clearSelected(); // Assuming you have a function to clear the selection
+                    } else {
+                      // Activate the current preset and apply its settings
+                      selectPreset(
+                        [
+                          ...products,
+                          ...breads,
+                          ...proteins,
+                          ...cheeses,
+                          ...salads,
+                          ...sauces,
+                          ...extras,
+                          ...toppings,
+                        ],
+                        preset.ingredients
+                      );
+                      setActivePreset(preset.id);
+                    }
+                  }}
+                  className={`${
+                    activePreset === preset.id
+                      ? "bg-yellow text-dark-green"
+                      : "bg-light-grey text-white"
+                  }`}
+                />
+              ))}
+            </div>
+          </Disclosure.Panel>
+        </Disclosure>
+        <div className="flex flex-col space-y-4 relative">
+          {/* Product */}
           <SingleSelectDropdown
-            title={"Bread"}
-            options={breads}
-            selected={selectedBread}
-            setSelected={setSelectedBread}
+            title={"Product"}
+            options={products}
+            selected={selectedProduct}
+            setSelected={setSelectedProduct}
           />
-        )}
-        {/* Protein */}
-        <div className="flex flex-row items-center">
-          <MultiSelectDropdown
-            title={"Protein"}
-            options={proteins}
-            selected={selectedProteins}
-            setSelected={setSelectedProteins}
-            className="grow"
-          />
-          <div className="ml-2 flex items-center">
-            <input
-              id="double"
-              type="checkbox"
-              onChange={handleDoubleProtein}
-              className="mr-2"
-              checked={doubleProtein}
+          {/* Bread */}
+          {(selectedProduct?.id == "p-1" || selectedProduct?.id == "p-2") && (
+            <SingleSelectDropdown
+              title={"Bread"}
+              options={breads}
+              selected={selectedBread}
+              setSelected={setSelectedBread}
             />
-            <label htmlFor="double">Double?</label>
+          )}
+          {/* Protein */}
+          <div className="flex flex-row items-center">
+            <MultiSelectDropdown
+              title={"Protein"}
+              options={proteins}
+              selected={selectedProteins}
+              setSelected={setSelectedProteins}
+              className="grow"
+            />
+            <div className="ml-2 flex items-center">
+              <input
+                id="double"
+                type="checkbox"
+                onChange={handleDoubleProtein}
+                className="mr-2"
+                checked={doubleProtein}
+              />
+              <label htmlFor="double">Double?</label>
+            </div>
           </div>
+          {/* Cheese */}
+          <MultiSelectDropdown
+            title={"Cheese"}
+            options={cheeses}
+            selected={selectedCheeses}
+            setSelected={setSelectedCheeses}
+          />
+          {/* Salads */}
+          <MultiSelectDropdown
+            title={"Salads"}
+            options={salads}
+            selected={selectedSalads}
+            setSelected={setSelectedSalads}
+          />
+          {/* Sauces */}
+          <MultiSelectDropdown
+            title={"Sauces"}
+            options={sauces}
+            selected={selectedSauces}
+            setSelected={setSelectedSauces}
+          />
+          {/* Extras */}
+          <MultiSelectDropdown
+            title={"Extras"}
+            options={extras}
+            selected={selectedExtras}
+            setSelected={setSelectedExtras}
+          />
+          {/* Toppings */}
+          <MultiSelectDropdown
+            title={"Toppings"}
+            options={toppings}
+            selected={selectedToppings}
+            setSelected={setSelectedToppings}
+          />
+          <Button text="Reset" handleClick={clearSelected} />
         </div>
-        {/* Cheese */}
-        <MultiSelectDropdown
-          title={"Cheese"}
-          options={cheeses}
-          selected={selectedCheeses}
-          setSelected={setSelectedCheeses}
-        />
-        {/* Salads */}
-        <MultiSelectDropdown
-          title={"Salads"}
-          options={salads}
-          selected={selectedSalads}
-          setSelected={setSelectedSalads}
-        />
-        {/* Sauces */}
-        <MultiSelectDropdown
-          title={"Sauces"}
-          options={sauces}
-          selected={selectedSauces}
-          setSelected={setSelectedSauces}
-        />
-        {/* Extras */}
-        <MultiSelectDropdown
-          title={"Extras"}
-          options={extras}
-          selected={selectedExtras}
-          setSelected={setSelectedExtras}
-        />
-        {/* Toppings */}
-        <MultiSelectDropdown
-          title={"Toppings"}
-          options={toppings}
-          selected={selectedToppings}
-          setSelected={setSelectedToppings}
-        />
-        <Button text="Reset" handleClick={clearSelected} />
-      </div>
 
-      {/* Display the nutritional information */}
-      <div className="nutrition-info pt-4">
-        <h2 className="text-lg text-dark-green">Nutrition information</h2>
-        <p>Adults need around 2000 kcal a day.</p>
-        <table className="w-full text-sm">
-          <thead className="sr-only">
-            <tr>
-              <th>Nutrient</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="font-bold">Energy (kcal)</td>
-              <td>{Math.round(calculateTotals.calories)}</td>
-            </tr>
-            <tr>
-              <td className="font-bold">Protein (g)</td>
-              <td>{Math.round(calculateTotals.protein)}</td>
-            </tr>
-            <tr>
-              <td className="font-bold">Carbohydrate (g)</td>
-              <td>{Math.round(calculateTotals.carbs)}</td>
-            </tr>
-            <tr>
-              <td className="font-bold">Fat (g)</td>
-              <td>{Math.round(calculateTotals.fat)}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p className="text-xs my-2">
-        SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
-        {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
-      </p>
-    </div>
+        {/* Display the nutritional information */}
+        <div className="nutrition-info pt-4">
+          <h2 className="text-lg text-dark-green">Nutrition information</h2>
+          <p>Adults need around 2000 kcal a day.</p>
+          <table className="w-full text-sm">
+            <thead className="sr-only">
+              <tr>
+                <th>Nutrient</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="font-bold">Energy (kcal)</td>
+                <td>{Math.round(calculateTotals.calories)}</td>
+              </tr>
+              <tr>
+                <td className="font-bold">Protein (g)</td>
+                <td>{Math.round(calculateTotals.protein)}</td>
+              </tr>
+              <tr>
+                <td className="font-bold">Carbohydrate (g)</td>
+                <td>{Math.round(calculateTotals.carbs)}</td>
+              </tr>
+              <tr>
+                <td className="font-bold">Fat (g)</td>
+                <td>{Math.round(calculateTotals.fat)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs my-2">
+          SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
+          {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
+        </p>
+      </section>
+      <section className="p-3 mx-auto max-w-lg my-5 shadow-lg bg-white">
+        <h2 className="text-lg text-dark-green">Updates</h2>
+        <h3 className="font-bold">04/04/2024</h3>
+        <ul className="list-disc ml-4">
+          <li>Added Chipotle Cheese Steak to Signature Series</li>
+          <li>Added BBQ Baller to Signature Series</li>
+          <li>Added Hunter's Chicken to Signature Series</li>
+        </ul>
+      </section>
+    </>
   );
 }
 
