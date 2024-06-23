@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-roboto;
+  @apply font-extralight;
+  @apply bg-subway-green;
+}
+
+p,
+label {
+  @apply text-sm;
+}
+
+button {
+  @apply font-oswald;
+}

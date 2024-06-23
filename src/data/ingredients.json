@@ -534,6 +534,14 @@
       "calories": 23,
       "protein": 0,
       "fat": 0
+    },
+    {
+      "id": "s-18",
+      "name": "Chimichurri Sauce",
+      "calories": 46,
+      "protein": 0,
+      "carbs": 1,
+      "fat": 5
     }
   ],
   "salads": [

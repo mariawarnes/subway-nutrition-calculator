@@ -206,6 +206,27 @@
       ]
     },
     {
+      "id": "x-22",
+      "name": "NEW All Star Chicken",
+      "ingredients": [
+        "m-14",
+        "e-1",
+        "c-1",
+        "v-4",
+        "v-10",
+        "v-1",
+        "v-5",
+        "v-8",
+        "t-2",
+        "s-5"
+      ]
+    },
+    {
+      "id": "x-23",
+      "name": "NEW Chimichurri Steak",
+      "ingredients": ["m-16", "c-1", "v-4", "v-10", "v-5", "v-3", "t-2", "s-18"]
+    },
+    {
       "id": "x-16",
       "name": "Nacho Chicken Saver Sub",
       "ingredients": ["m-9", "c-1", "v-4", "v-10", "s-2", "e-11", "t-6"]

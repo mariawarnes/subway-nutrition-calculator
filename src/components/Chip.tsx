@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from "react";
 
-const Button = ({
+const Chip = ({
   text,
   handleClick,
   className,
@@ -11,7 +11,7 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`bg-subway-green shadow uppercase hover:bg-green-700 text-white py-2 px-4 rounded-md font-light w-full mt-4 ${className}`}
+      className={`font-roboto font-normal bg-white  border-2  p-1 px-3 shadow rounded-full ${className}`}
       onClick={handleClick}
     >
       {text}
@@ -19,4 +19,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default Chip;

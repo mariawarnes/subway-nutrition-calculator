@@ -4,20 +4,12 @@ const config: Config = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        roboto: ["Roboto", "Arial", "Helvetica", "sans-serif"],
-      },
       colors: {
-        black: "#545454",
-        grey: "#808080",
-        "light-grey": "#a4a4a4",
-        "dark-grey": "#545454",
-        yellow: "#ffc20d",
-        "light-green": "#e1ece3",
-        green: "#78B856",
-        "dark-green": "#006230",
-        blue: "0E82AF",
-        red: "DE3804",
+        "subway-green": "#03834E",
+      },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+        oswald: ["Oswald", "sans-serif"],
       },
     },
   },
