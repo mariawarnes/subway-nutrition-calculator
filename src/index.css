@@ -4,7 +4,7 @@
 
 body {
   @apply font-roboto;
-  @apply font-extralight;
+  @apply font-light;
   @apply bg-subway-green;
 }
 
