@@ -15,7 +15,7 @@ const Checkbox = ({
   return (
     <div className="ml-2 flex items-center">
       <Check checked={checked} onClick={onChange} />
-      <label htmlFor={id} className="ml-4 font-extralight">
+      <label htmlFor={id} className="ml-4 font-light">
         {label}
       </label>
     </div>
