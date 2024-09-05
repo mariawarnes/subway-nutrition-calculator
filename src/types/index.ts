@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 export interface Ingredient {
   id: string;
   name: string;
+  old?: boolean;
   calories?: number;
   protein?: number;
   carbs?: number;

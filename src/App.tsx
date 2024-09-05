@@ -146,7 +146,6 @@ function App() {
           <h1 className="font-bold mb-2 text-2xl w-full">
             Subway Nutrition Calculator
           </h1>
-
           <p className="my-2 text-sm font-light">
             Based on the nutritional values available at{" "}
             <a
@@ -160,51 +159,100 @@ function App() {
             </a>
             , values for other regions may vary.
           </p>
-
+          <p className="py-6 text-base">Choose from a Signature or Saver</p>
           <Disclosure>
             <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 shadow-md border-2 border-transparent focus:border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
-              {`Choose a Signature or Saver (optional)`}
+              {`Retired`}
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <BsChevronDown aria-hidden="true" />
               </span>
             </Disclosure.Button>
             <Disclosure.Panel>
               <div className="space-y-2 space-x-1 mb-4">
-                {presets.map((preset) => (
-                  <Chip
-                    key={preset.id}
-                    text={preset.name}
-                    handleClick={() => {
-                      if (activePreset === preset.id) {
-                        setActivePreset(null);
-                        clearSelected();
-                      } else {
-                        selectPreset(
-                          [
-                            ...products,
-                            ...breads,
-                            ...proteins,
-                            ...cheeses,
-                            ...salads,
-                            ...sauces,
-                            ...extras,
-                            ...toppings,
-                          ],
-                          preset.ingredients
-                        );
-                        setActivePreset(preset.id);
-                      }
-                    }}
-                    className={`${
-                      activePreset === preset.id
-                        ? " border-black"
-                        : " border-transparent"
-                    }`}
-                  />
-                ))}
+                {presets
+                  .filter((preset) => preset.old && preset.old === true)
+                  .map((preset) => (
+                    <Chip
+                      key={preset.id}
+                      text={preset.name}
+                      handleClick={() => {
+                        if (activePreset === preset.id) {
+                          setActivePreset(null);
+                          clearSelected();
+                        } else {
+                          selectPreset(
+                            [
+                              ...products,
+                              ...breads,
+                              ...proteins,
+                              ...cheeses,
+                              ...salads,
+                              ...sauces,
+                              ...extras,
+                              ...toppings,
+                            ],
+                            preset.ingredients
+                          );
+                          setActivePreset(preset.id);
+                        }
+                      }}
+                      className={`${
+                        activePreset === preset.id
+                          ? " border-black"
+                          : " border-transparent"
+                      }`}
+                    />
+                  ))}
               </div>
             </Disclosure.Panel>
           </Disclosure>
+          <Disclosure>
+            <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 shadow-md border-2 border-transparent focus:border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
+              {`Current`}
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <BsChevronDown aria-hidden="true" />
+              </span>
+            </Disclosure.Button>
+            <Disclosure.Panel>
+              <div className="space-y-2 space-x-1 mb-4">
+                {presets
+                  .filter((preset) => !preset.old)
+                  .map((preset) => (
+                    <Chip
+                      key={preset.id}
+                      text={preset.name}
+                      handleClick={() => {
+                        if (activePreset === preset.id) {
+                          setActivePreset(null);
+                          clearSelected();
+                        } else {
+                          selectPreset(
+                            [
+                              ...products,
+                              ...breads,
+                              ...proteins,
+                              ...cheeses,
+                              ...salads,
+                              ...sauces,
+                              ...extras,
+                              ...toppings,
+                            ],
+                            preset.ingredients
+                          );
+                          setActivePreset(preset.id);
+                        }
+                      }}
+                      className={`${
+                        activePreset === preset.id
+                          ? " border-black"
+                          : " border-transparent"
+                      }`}
+                    />
+                  ))}
+              </div>
+            </Disclosure.Panel>
+          </Disclosure>
+          <p className="py-6 text-base">Or build your own</p>
           <div className="flex flex-col space-y-4 relative">
             {/* Product */}
             <SingleSelectDropdown
@@ -318,21 +366,40 @@ function App() {
       <section className="p-6 max-w-screen-lg mx-auto my-5 shadow-lg bg-white rounded-lg">
         <div className="space-y-2">
           <h2 className="text-lg">Updates</h2>
-
+          <div>
+            <h3 className="font-bold">05/09/2024</h3>
+            <ul className="list-disc ml-4 max-w-prose">
+              <li>Removed 9 Grain Wheat from Bread</li>
+              <li>Added Cheese &amp; Jalapeno to Bread</li>
+              <li>
+                Retired Great Caesar, Meatless Philly, Bacon &amp; Sausage,
+                Veggie Breakwich, Pesto Paradiso, Club Master, Chipotle Cheese
+                Steak, The BBQ Baller, Hunter's Chicken and Chimichurri Steak
+              </li>
+              <li>
+                Added Furious Chicken and Steak Texicana to Signature Series
+              </li>
+              <li>
+                Added Ham &amp; Cheese Saver Sub Toastie and X-Spicy Nacho
+                Chicken Saver Sub to Savers
+              </li>
+            </ul>
+          </div>
           <div>
             <h3 className="font-bold">23/06/2024</h3>
             <ul className="list-disc ml-4">
-              <li>Style updated to match new Subway website</li>
-              <li>Added All Star Chicken to Signature Series</li>
-              <li>Added Chimichurri Steak to Signature Series</li>
+              <li>
+                Added All Star Chicken and Chimichurri Steak to Signature Series
+              </li>
               <li>Added Chimichurri Sauce to Sauces</li>
             </ul>
           </div>
           <div>
             <h3 className="font-bold">04/04/2024</h3>
             <ul className="list-disc ml-4">
-              <li>Added Chipotle Cheese Steak to Signature Series</li>
-              <li>Added BBQ Baller to Signature Series</li>
+              <li>
+                Added Chipotle Cheese Steak and BBQ Baller to Signature Series
+              </li>
               <li>Added Hunter's Chicken to Signature Series</li>
             </ul>
           </div>

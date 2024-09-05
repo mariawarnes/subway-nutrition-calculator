@@ -11,7 +11,7 @@ const Chip = ({
 }) => {
   return (
     <button
-      className={`font-roboto font-normal bg-white  border-2  p-1 px-3 shadow rounded-full ${className}`}
+      className={`font-roboto font-normal bg-white text-sm border-2 p-2 px-6 shadow rounded-full ${className}`}
       onClick={handleClick}
     >
       {text}

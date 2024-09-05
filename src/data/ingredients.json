@@ -35,14 +35,6 @@
   ],
   "breads": [
     {
-      "id": "b-1",
-      "name": "9-Grain Wheat [VE]",
-      "calories": 165,
-      "protein": 7.8,
-      "carbs": 27,
-      "fat": 1.6
-    },
-    {
       "id": "b-2",
       "name": "Gluten-Free [VE, GF]",
       "calories": 285,
@@ -81,6 +73,14 @@
       "protein": 6.9,
       "carbs": 29,
       "fat": 1.7
+    },
+    {
+      "id": "b-7",
+      "name": "Cheese & Jalapeno [V]",
+      "calories": 236,
+      "protein": 8,
+      "carbs": 36,
+      "fat": 5.6
     },
     {
       "id": "b-7",
@@ -126,7 +126,7 @@
     },
     {
       "id": "m-4",
-      "name": "Ham [GF]",
+      "name": "Sliced Ham [GF]",
       "calories": 34,
       "protein": 5,
       "carbs": 1,
@@ -134,7 +134,7 @@
     },
     {
       "id": "m-5",
-      "name": "Maple Cured Streaky Bacon [GF]",
+      "name": "Streaky Bacon [GF]",
       "calories": 37,
       "protein": 3,
       "carbs": 0,
@@ -182,7 +182,7 @@
     },
     {
       "id": "m-11",
-      "name": "Plant Patty [VE]",
+      "name": "Spiced Plant Patty [VE]",
       "calories": 169,
       "protein": 11,
       "carbs": 10,
@@ -206,7 +206,7 @@
     },
     {
       "id": "m-14",
-      "name": "Roast Chicken Breast Strips [GF]",
+      "name": "Rotisserie-style Chicken [GF]",
       "calories": 85,
       "protein": 16,
       "carbs": 1,
@@ -418,7 +418,7 @@
     },
     {
       "id": "s-4",
-      "name": "Extra Spicy Chipotle Southwest Sauce [V, GF]",
+      "name": "X-Spicy Southwest Sauce [V, GF]",
       "calories": 60,
       "protein": 0.2,
       "carbs": 1.1,
@@ -442,7 +442,7 @@
     },
     {
       "id": "s-6",
-      "name": "Hickory Smoked BBQ Sauce [V]",
+      "name": "BBQ Sauce [V]",
       "calories": 24,
       "protein": 0.1,
       "carbs": 5.8,
@@ -536,7 +536,7 @@
       "fat": 0
     },
     {
-      "id": "s-18",
+      "id": "s-19",
       "name": "Chimichurri Sauce",
       "calories": 46,
       "protein": 0,
@@ -587,7 +587,7 @@
     },
     {
       "id": "v-5",
-      "name": "Mixed Peppers",
+      "name": "Red Peppers",
       "calories": 3,
       "protein": 0.2,
       "carbs": 0.5,
