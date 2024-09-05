@@ -141,17 +141,17 @@ function App() {
 
   return (
     <>
-      <section className="max-w-screen-lg p-6 mt-10 mx-auto md:flex md:space-x-4 md:flex-row my-5 shadow-md bg-white rounded-lg">
+      <section className="max-w-screen-lg p-10 mt-10 mx-auto md:flex md:space-x-6 md:flex-row my-5 shadow-custom bg-white rounded-lg">
         <div className="md:w-1/2">
-          <h1 className="font-bold mb-2 text-2xl w-full">
+          <h1 className="font-bold mb-2 tracking-tight text-2xl w-full">
             Subway Nutrition Calculator
           </h1>
-          <p className="my-2 text-sm font-light">
+          <p className="my-2 text-sm leading-6 text-gray-600">
             Based on the nutritional values available at{" "}
             <a
               target="_blank"
               rel="nofollow noopener"
-              className="underline text-bold"
+              className="underline text-sm font-bold"
               href="https://www.subway.com/en-GB/"
             >
               SUBWAY® UK & Ireland
@@ -159,101 +159,107 @@ function App() {
             </a>
             , values for other regions may vary.
           </p>
-          <p className="py-6 text-base">Choose from a Signature or Saver</p>
-          <Disclosure>
-            <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 shadow-md border-2 border-transparent focus:border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
-              {`Retired`}
-              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <BsChevronDown aria-hidden="true" />
-              </span>
-            </Disclosure.Button>
-            <Disclosure.Panel>
-              <div className="space-y-2 space-x-1 mb-4">
-                {presets
-                  .filter((preset) => preset.old && preset.old === true)
-                  .map((preset) => (
-                    <Chip
-                      key={preset.id}
-                      text={preset.name}
-                      handleClick={() => {
-                        if (activePreset === preset.id) {
-                          setActivePreset(null);
-                          clearSelected();
-                        } else {
-                          selectPreset(
-                            [
-                              ...products,
-                              ...breads,
-                              ...proteins,
-                              ...cheeses,
-                              ...salads,
-                              ...sauces,
-                              ...extras,
-                              ...toppings,
-                            ],
-                            preset.ingredients
-                          );
-                          setActivePreset(preset.id);
-                        }
-                      }}
-                      className={`${
-                        activePreset === preset.id
-                          ? " border-black"
-                          : " border-transparent"
-                      }`}
-                    />
-                  ))}
-              </div>
-            </Disclosure.Panel>
-          </Disclosure>
-          <Disclosure>
-            <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 shadow-md border-2 border-transparent focus:border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
-              {`Current`}
-              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <BsChevronDown aria-hidden="true" />
-              </span>
-            </Disclosure.Button>
-            <Disclosure.Panel>
-              <div className="space-y-2 space-x-1 mb-4">
-                {presets
-                  .filter((preset) => !preset.old)
-                  .map((preset) => (
-                    <Chip
-                      key={preset.id}
-                      text={preset.name}
-                      handleClick={() => {
-                        if (activePreset === preset.id) {
-                          setActivePreset(null);
-                          clearSelected();
-                        } else {
-                          selectPreset(
-                            [
-                              ...products,
-                              ...breads,
-                              ...proteins,
-                              ...cheeses,
-                              ...salads,
-                              ...sauces,
-                              ...extras,
-                              ...toppings,
-                            ],
-                            preset.ingredients
-                          );
-                          setActivePreset(preset.id);
-                        }
-                      }}
-                      className={`${
-                        activePreset === preset.id
-                          ? " border-black"
-                          : " border-transparent"
-                      }`}
-                    />
-                  ))}
-              </div>
-            </Disclosure.Panel>
-          </Disclosure>
-          <p className="py-6 text-base">Or build your own</p>
-          <div className="flex flex-col space-y-4 relative">
+          <p className="py-6 text-base font-medium tracking-tight">
+            Choose from a Signature or Saver
+          </p>
+          <div className="flex flex-col space-y-6 relative">
+            <Disclosure>
+              <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 border-2 border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
+                {`Retired`}
+                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                  <BsChevronDown aria-hidden="true" />
+                </span>
+              </Disclosure.Button>
+              <Disclosure.Panel>
+                <div className="space-y-2 space-x-1 mb-4">
+                  {presets
+                    .filter((preset) => preset.old && preset.old === true)
+                    .map((preset) => (
+                      <Chip
+                        key={preset.id}
+                        text={preset.name}
+                        handleClick={() => {
+                          if (activePreset === preset.id) {
+                            setActivePreset(null);
+                            clearSelected();
+                          } else {
+                            selectPreset(
+                              [
+                                ...products,
+                                ...breads,
+                                ...proteins,
+                                ...cheeses,
+                                ...salads,
+                                ...sauces,
+                                ...extras,
+                                ...toppings,
+                              ],
+                              preset.ingredients
+                            );
+                            setActivePreset(preset.id);
+                          }
+                        }}
+                        className={`${
+                          activePreset === preset.id
+                            ? " border-black"
+                            : " border-transparent"
+                        }`}
+                      />
+                    ))}
+                </div>
+              </Disclosure.Panel>
+            </Disclosure>
+            <Disclosure>
+              <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 border-2 border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
+                {`Current`}
+                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                  <BsChevronDown aria-hidden="true" />
+                </span>
+              </Disclosure.Button>
+              <Disclosure.Panel>
+                <div className="space-y-2 space-x-1 mb-4">
+                  {presets
+                    .filter((preset) => !preset.old)
+                    .map((preset) => (
+                      <Chip
+                        key={preset.id}
+                        text={preset.name}
+                        handleClick={() => {
+                          if (activePreset === preset.id) {
+                            setActivePreset(null);
+                            clearSelected();
+                          } else {
+                            selectPreset(
+                              [
+                                ...products,
+                                ...breads,
+                                ...proteins,
+                                ...cheeses,
+                                ...salads,
+                                ...sauces,
+                                ...extras,
+                                ...toppings,
+                              ],
+                              preset.ingredients
+                            );
+                            setActivePreset(preset.id);
+                          }
+                        }}
+                        className={`${
+                          activePreset === preset.id
+                            ? " border-black"
+                            : " border-transparent"
+                        }`}
+                      />
+                    ))}
+                </div>
+              </Disclosure.Panel>
+            </Disclosure>
+          </div>
+          <p className="py-6 text-base font-medium tracking-tight">
+            Or build your own
+          </p>
+          <div className="flex flex-col space-y-6 relative">
             {/* Product */}
             <SingleSelectDropdown
               title={"Product"}
@@ -326,9 +332,11 @@ function App() {
 
         <div className="md:w-1/2">
           {/* Display the nutritional information */}
-          <div className="nutrition-info max-md:pt-4">
-            <h2 className="text-lg ">Nutrition information</h2>
-            <p>Adults need around 2000 kcal a day.</p>
+          <div className="nutrition-info max-md:pt-4 bg-white md:sticky md:top-8">
+            <h2 className="uppercase text-lg font-black tracking-tight">
+              Nutrition Info
+            </h2>
+            <p className="pb-4 pt-2">Adults need around 2000 kcal a day.</p>
             <table className="w-full text-sm">
               <thead className="sr-only">
                 <tr>
@@ -338,34 +346,45 @@ function App() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="font-bold">Energy (kcal)</td>
-                  <td>{Math.round(calculateTotals.calories)}</td>
+                  <td className="font-bold uppercase py-2">Energy (kcal)</td>
+                  <td className="text-right">
+                    {Math.round(calculateTotals.calories)}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="font-bold">Protein (g)</td>
-                  <td>{Math.round(calculateTotals.protein)}</td>
+                  <td className="font-bold uppercase py-2">Protein (g)</td>
+                  <td className="text-right">
+                    {Math.round(calculateTotals.protein)}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="font-bold">Carbohydrate (g)</td>
-                  <td>{Math.round(calculateTotals.carbs)}</td>
+                  <td className="font-bold uppercase py-2">Carbohydrate (g)</td>
+                  <td className="text-right">
+                    {Math.round(calculateTotals.carbs)}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="font-bold">Fat (g)</td>
-                  <td>{Math.round(calculateTotals.fat)}</td>
+                  <td className="font-bold uppercase py-2">Fat (g)</td>
+                  <td className="text-right">
+                    {Math.round(calculateTotals.fat)}
+                  </td>
                 </tr>
               </tbody>
             </table>
             <Button text="Reset" handleClick={clearSelected} />
+
+            <p className="text-xs mt-6 mb-2">
+              SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
+              {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
+            </p>
           </div>
-          <p className="text-xs my-2">
-            SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
-            {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
-          </p>
         </div>
       </section>
-      <section className="p-6 max-w-screen-lg mx-auto my-5 shadow-lg bg-white rounded-lg">
+      <section className="p-8 max-w-screen-lg mx-auto my-14 shadow-custom bg-white rounded-lg">
         <div className="space-y-2">
-          <h2 className="text-lg">Updates</h2>
+          <h2 className="uppercase text-lg font-black tracking-tight">
+            Updates
+          </h2>
           <div>
             <h3 className="font-bold">05/09/2024</h3>
             <ul className="list-disc ml-4 max-w-prose">

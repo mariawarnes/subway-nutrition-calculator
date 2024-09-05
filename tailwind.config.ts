@@ -11,6 +11,9 @@ const config: Config = {
         roboto: ["Roboto", "sans-serif"],
         oswald: ["Oswald", "sans-serif"],
       },
+      boxShadow: {
+        custom: "0 4px 10px rgb(0 0 0 / 0.1), 0 4px 10px rgb(0 0 0 / 0.1)",
+      },
     },
   },
   plugins: [],

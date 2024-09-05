@@ -11,7 +11,7 @@ const Check = ({
 }) => {
   return (
     <div
-      className={`flex justify-center items-center w-5 h-5 border-[1px] cursor-pointer ${
+      className={`flex justify-center items-center w-5 h-5 border-2 border-subway-green rounded-sm cursor-pointer ${
         checked ? "bg-subway-green text-white" : "border-black"
       } ${className}`}
       onClick={onClick}
