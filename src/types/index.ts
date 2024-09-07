@@ -10,11 +10,20 @@ export interface Ingredient {
 }
 
 export interface Preset {
+  id: string;
   name: string;
+  ingredients: Ingredient[];
   old?: boolean;
   saver?: boolean;
+}
+
+// This type represents the initial structure of presets in the JSON file
+export interface PresetWithIds {
   id: string;
-  ingredients: Ingredient[];
+  name: string;
+  ingredients: string[];
+  old?: boolean;
+  saver?: boolean;
 }
 
 export interface SingleSelectDropdownProps {

@@ -14,7 +14,7 @@ import {
   toppings,
 } from "./data/ingredients.json";
 import { presets } from "./data/presets.json";
-import { Ingredient } from "./types";
+import { Ingredient, Preset, PresetWithIds } from "./types";
 import Checkbox from "./components/Checkbox";
 import Accordion from "./components/Accordion";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
@@ -39,6 +39,47 @@ function App() {
     carbs: number;
     fat: number;
   }>({ calories: 0, protein: 0, carbs: 0, fat: 0 });
+
+  // Combine all ingredients into a single array
+  const allIngredients: Ingredient[] = [
+    ...products,
+    ...breads,
+    ...proteins,
+    ...cheeses,
+    ...sauces,
+    ...salads,
+    ...extras,
+    ...toppings,
+  ];
+
+  // Create a dictionary for quick lookup by ID
+  const ingredientMap: Record<string, Ingredient> = {};
+  allIngredients.forEach((ingredient: Ingredient) => {
+    ingredientMap[ingredient.id] = ingredient;
+  });
+
+  // Function to map ingredient IDs to Ingredient objects
+  const mapPresetIngredients = (preset: PresetWithIds): Preset => {
+    const mappedIngredients: Ingredient[] = preset.ingredients.map(
+      (id: string) => {
+        const ingredient = ingredientMap[id];
+        if (!ingredient) {
+          throw new Error(`Ingredient with id ${id} not found`);
+        }
+        return ingredient;
+      }
+    );
+
+    return {
+      ...preset,
+      ingredients: mappedIngredients,
+    };
+  };
+
+  // Apply the mapping to all presets
+  const mappedPresets: Preset[] = (presets as PresetWithIds[]).map(
+    mapPresetIngredients
+  );
 
   const renderArrow = (current: number, previous: number) => {
     console.log("Current:", current, "Previous:", previous);
@@ -191,7 +232,7 @@ function App() {
           <div className="flex flex-col space-y-6 relative">
             <Accordion
               label="Choose a Signature or Saver"
-              presets={presets}
+              presets={mappedPresets}
               activePreset={activePreset}
               selectPreset={selectPreset}
               setActivePreset={setActivePreset}
