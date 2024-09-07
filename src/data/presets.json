@@ -279,27 +279,32 @@
     {
       "id": "x-16",
       "name": "Nacho Chicken Saver Sub",
-      "ingredients": ["m-9", "c-1", "v-4", "v-10", "s-2", "e-11", "t-6"]
+      "ingredients": ["m-9", "c-1", "v-4", "v-10", "s-2", "e-11", "t-6"],
+      "saver": true
     },
     {
       "id": "x-17",
       "name": "BLT Saver Sub",
-      "ingredients": ["m-5", "c-8", "v-4", "v-10", "s-9", "e-11", "t-6"]
+      "ingredients": ["m-5", "c-8", "v-4", "v-10", "s-9", "e-11", "t-6"],
+      "saver": true
     },
     {
       "id": "x-18",
       "name": "Cheese & Tomato Saver Sub (V)",
-      "ingredients": ["m-29", "c-1", "v-10", "s-9", "e-11", "t-6"]
+      "ingredients": ["m-29", "c-1", "v-10", "s-9", "e-11", "t-6"],
+      "saver": true
     },
     {
       "id": "x-26",
       "name": "NEW Ham & Cheese Saver Sub Toastie",
-      "ingredients": ["m-4", "v-11", "t-6", "e-11", "c-1", "s-2"]
+      "ingredients": ["m-4", "v-11", "t-6", "e-11", "c-1", "s-2"],
+      "saver": true
     },
     {
       "id": "x-27",
       "name": "NEW X-Spicy Nacho Chicken Saver Sub",
-      "ingredients": ["m-9", "c-1", "v-4", "v-10", "s-4", "e-11", "t-6"]
+      "ingredients": ["m-9", "c-1", "v-4", "v-10", "s-4", "e-11", "t-6"],
+      "saver": true
     }
   ]
 }

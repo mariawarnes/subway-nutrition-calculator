@@ -11,7 +11,7 @@ const Button = ({
 }) => {
   return (
     <button
-      className={`bg-subway-green shadow uppercase hover:bg-green-700 text-white py-2 px-4 rounded-md font-light w-full mt-4 ${className}`}
+      className={`bg-subway-green shadow-lg text-lg hover:shadow-xl text-white py-3 px-6 rounded-md font-normal uppercase w-full mt-4 transition ease-in-out duration-200 active:bg-green-800 ${className}`}
       onClick={handleClick}
     >
       {text}

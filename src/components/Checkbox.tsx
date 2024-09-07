@@ -1,4 +1,3 @@
-import { MdOutlineCheck } from "react-icons/md";
 import Check from "./Check";
 
 const Checkbox = ({
@@ -14,11 +13,8 @@ const Checkbox = ({
 }) => {
   return (
     <div className="ml-4 flex items-center">
-      <Check checked={checked} onClick={onChange} />
-      <label
-        htmlFor={id}
-        className="ml-2 uppercase text-gray-700 font-normal text-[0.9rem] font-oswald"
-      >
+      <Check id={id} checked={checked} onClick={onChange} />
+      <label htmlFor={id} className="ml-2 font-sans font-medium cursor-pointer">
         {label}
       </label>
     </div>

@@ -5,10 +5,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "subway-yellow": "#F4B640",
         "subway-green": "#03834E",
+        "subway-dark-green": "#004729",
       },
       fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
+        sans: ["Roboto", "sans-serif"],
         oswald: ["Oswald", "sans-serif"],
       },
       boxShadow: {

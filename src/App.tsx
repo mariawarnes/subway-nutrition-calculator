@@ -1,8 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SingleSelectDropdown from "./components/SingleSelectDropdown";
 import MultiSelectDropdown from "./components/MultiSelectDropdown";
 import Button from "./components/Button";
-import { Disclosure } from "@headlessui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import {
   products,
@@ -16,9 +15,9 @@ import {
 } from "./data/ingredients.json";
 import { presets } from "./data/presets.json";
 import { Ingredient } from "./types";
-import { BsChevronDown } from "react-icons/bs";
-import Chip from "./components/Chip";
 import Checkbox from "./components/Checkbox";
+import Accordion from "./components/Accordion";
+import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState<Ingredient | null>(
@@ -33,6 +32,25 @@ function App() {
   const [selectedExtras, setSelectedExtras] = useState<Ingredient[]>([]);
   const [selectedToppings, setSelectedToppings] = useState<Ingredient[]>([]);
   const [activePreset, setActivePreset] = useState<string | null>(null);
+
+  const [previousTotals, setPreviousTotals] = useState<{
+    calories: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+  }>({ calories: 0, protein: 0, carbs: 0, fat: 0 });
+
+  const renderArrow = (current: number, previous: number) => {
+    console.log("Current:", current, "Previous:", previous);
+
+    if (current > previous) {
+      return <BsArrowUp className="inline mr-2" />;
+    } else if (current < previous) {
+      return <BsArrowDown className="inline mr-2" />;
+    } else {
+      return null;
+    }
+  };
 
   const clearSelected = () => {
     setSelectedProduct(null);
@@ -134,6 +152,12 @@ function App() {
     doubleProtein,
   ]);
 
+  useEffect(() => {
+    console.log("Previous Totals:", previousTotals);
+    console.log("Current Totals:", calculateTotals);
+    setPreviousTotals(calculateTotals);
+  }, [calculateTotals]);
+
   const handleDoubleProtein = (): void => {
     setDoubleProtein(!doubleProtein);
     calculateTotalsFunction();
@@ -141,12 +165,16 @@ function App() {
 
   return (
     <>
-      <section className="max-w-screen-lg p-10 mt-10 mx-auto md:flex md:space-x-6 md:flex-row my-5 shadow-custom bg-white rounded-lg">
+      <section className="max-w-screen-lg p-4 sm:p-10 mt-4 sm:mt-10 mx-auto md:flex md:space-x-6 md:flex-row my-5 shadow-custom bg-white rounded-lg">
         <div className="md:w-1/2">
-          <h1 className="font-bold mb-2 tracking-tight text-2xl w-full">
-            Subway Nutrition Calculator
+          <h1 className="font-black mb-2 text-4xl w-full">
+            <span className="text-subway-yellow font-oswald uppercase">
+              Sub
+            </span>
+            <span className="text-subway-green font-oswald uppercase">way</span>{" "}
+            Nutrition Calculator
           </h1>
-          <p className="my-2 text-sm leading-6 text-gray-600">
+          <p className="body-copy">
             Based on the nutritional values available at{" "}
             <a
               target="_blank"
@@ -159,106 +187,18 @@ function App() {
             </a>
             , values for other regions may vary.
           </p>
-          <p className="py-6 text-base font-medium tracking-tight">
-            Choose from a Signature or Saver
-          </p>
+          <p className="sub-heading">Choose from a Signature or Saver</p>
           <div className="flex flex-col space-y-6 relative">
-            <Disclosure>
-              <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 border-2 border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
-                {`Retired`}
-                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                  <BsChevronDown aria-hidden="true" />
-                </span>
-              </Disclosure.Button>
-              <Disclosure.Panel>
-                <div className="space-y-2 space-x-1 mb-4">
-                  {presets
-                    .filter((preset) => preset.old && preset.old === true)
-                    .map((preset) => (
-                      <Chip
-                        key={preset.id}
-                        text={preset.name}
-                        handleClick={() => {
-                          if (activePreset === preset.id) {
-                            setActivePreset(null);
-                            clearSelected();
-                          } else {
-                            selectPreset(
-                              [
-                                ...products,
-                                ...breads,
-                                ...proteins,
-                                ...cheeses,
-                                ...salads,
-                                ...sauces,
-                                ...extras,
-                                ...toppings,
-                              ],
-                              preset.ingredients
-                            );
-                            setActivePreset(preset.id);
-                          }
-                        }}
-                        className={`${
-                          activePreset === preset.id
-                            ? " border-black"
-                            : " border-transparent"
-                        }`}
-                      />
-                    ))}
-                </div>
-              </Disclosure.Panel>
-            </Disclosure>
-            <Disclosure>
-              <Disclosure.Button className="uppercase font-oswald text-sm mb-2 relative text-gray-700 border-2 border-subway-green font-normal w-full p-2 bg-subway-light-green pr-6 rounded-md">
-                {`Current`}
-                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                  <BsChevronDown aria-hidden="true" />
-                </span>
-              </Disclosure.Button>
-              <Disclosure.Panel>
-                <div className="space-y-2 space-x-1 mb-4">
-                  {presets
-                    .filter((preset) => !preset.old)
-                    .map((preset) => (
-                      <Chip
-                        key={preset.id}
-                        text={preset.name}
-                        handleClick={() => {
-                          if (activePreset === preset.id) {
-                            setActivePreset(null);
-                            clearSelected();
-                          } else {
-                            selectPreset(
-                              [
-                                ...products,
-                                ...breads,
-                                ...proteins,
-                                ...cheeses,
-                                ...salads,
-                                ...sauces,
-                                ...extras,
-                                ...toppings,
-                              ],
-                              preset.ingredients
-                            );
-                            setActivePreset(preset.id);
-                          }
-                        }}
-                        className={`${
-                          activePreset === preset.id
-                            ? " border-black"
-                            : " border-transparent"
-                        }`}
-                      />
-                    ))}
-                </div>
-              </Disclosure.Panel>
-            </Disclosure>
+            <Accordion
+              label="Choose a Signature or Saver"
+              presets={presets}
+              activePreset={activePreset}
+              selectPreset={selectPreset}
+              setActivePreset={setActivePreset}
+              clearSelected={clearSelected}
+            />
           </div>
-          <p className="py-6 text-base font-medium tracking-tight">
-            Or build your own
-          </p>
+          <p className="sub-heading">Or build your own</p>
           <div className="flex flex-col space-y-6 relative">
             {/* Product */}
             <SingleSelectDropdown
@@ -333,10 +273,8 @@ function App() {
         <div className="md:w-1/2">
           {/* Display the nutritional information */}
           <div className="nutrition-info max-md:pt-4 bg-white md:sticky md:top-8">
-            <h2 className="uppercase text-lg font-black tracking-tight">
-              Nutrition Info
-            </h2>
-            <p className="pb-4 pt-2">Adults need around 2000 kcal a day.</p>
+            <h2 className="sub-heading !mt-0">Nutrition Info</h2>
+            <p className="body-copy">Adults need around 2000 kcal a day.</p>
             <table className="w-full text-sm">
               <thead className="sr-only">
                 <tr>
@@ -346,34 +284,44 @@ function App() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="font-bold uppercase py-2">Energy (kcal)</td>
+                  <td className="table-header">Energy (kcal)</td>
                   <td className="text-right">
                     {Math.round(calculateTotals.calories)}
+                    {renderArrow(
+                      calculateTotals.calories,
+                      previousTotals.calories
+                    )}
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-bold uppercase py-2">Protein (g)</td>
+                  <td className="table-header">Protein (g)</td>
                   <td className="text-right">
                     {Math.round(calculateTotals.protein)}
+                    {renderArrow(
+                      calculateTotals.protein,
+                      previousTotals.protein
+                    )}
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-bold uppercase py-2">Carbohydrate (g)</td>
+                  <td className="table-header">Carbohydrate (g)</td>
                   <td className="text-right">
                     {Math.round(calculateTotals.carbs)}
+                    {renderArrow(calculateTotals.carbs, previousTotals.carbs)}
                   </td>
                 </tr>
                 <tr>
-                  <td className="font-bold uppercase py-2">Fat (g)</td>
+                  <td className="table-header">Fat (g)</td>
                   <td className="text-right">
                     {Math.round(calculateTotals.fat)}
+                    {renderArrow(calculateTotals.fat, previousTotals.fat)}
                   </td>
                 </tr>
               </tbody>
             </table>
             <Button text="Reset" handleClick={clearSelected} />
 
-            <p className="text-xs mt-6 mb-2">
+            <p className="smallprint mt-4">
               SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
               {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
             </p>
@@ -382,45 +330,46 @@ function App() {
       </section>
       <section className="p-8 max-w-screen-lg mx-auto my-14 shadow-custom bg-white rounded-lg">
         <div className="space-y-2">
-          <h2 className="uppercase text-lg font-black tracking-tight">
-            Updates
-          </h2>
-          <div>
-            <h3 className="font-bold">05/09/2024</h3>
-            <ul className="list-disc ml-4 max-w-prose">
-              <li>Removed 9 Grain Wheat from Bread</li>
-              <li>Added Cheese &amp; Jalapeno to Bread</li>
-              <li>
-                Retired Great Caesar, Meatless Philly, Bacon &amp; Sausage,
-                Veggie Breakwich, Pesto Paradiso, Club Master, Chipotle Cheese
-                Steak, The BBQ Baller, Hunter's Chicken and Chimichurri Steak
-              </li>
-              <li>
-                Added Furious Chicken and Steak Texicana to Signature Series
-              </li>
-              <li>
-                Added Ham &amp; Cheese Saver Sub Toastie and X-Spicy Nacho
-                Chicken Saver Sub to Savers
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold">23/06/2024</h3>
-            <ul className="list-disc ml-4">
-              <li>
-                Added All Star Chicken and Chimichurri Steak to Signature Series
-              </li>
-              <li>Added Chimichurri Sauce to Sauces</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold">04/04/2024</h3>
-            <ul className="list-disc ml-4">
-              <li>
-                Added Chipotle Cheese Steak and BBQ Baller to Signature Series
-              </li>
-              <li>Added Hunter's Chicken to Signature Series</li>
-            </ul>
+          <h2 className="sub-heading !mt-0">Updates</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold">05/09/2024</h3>
+              <ul className="list-disc ml-4 max-w-prose">
+                <li>Removed 9 Grain Wheat from Bread</li>
+                <li>Added Cheese &amp; Jalapeno to Bread</li>
+                <li>
+                  Retired Great Caesar, Meatless Philly, Bacon &amp; Sausage,
+                  Veggie Breakwich, Pesto Paradiso, Club Master, Chipotle Cheese
+                  Steak, The BBQ Baller, Hunter's Chicken and Chimichurri Steak
+                </li>
+                <li>
+                  Added Furious Chicken and Steak Texicana to Signature Series
+                </li>
+                <li>
+                  Added Ham &amp; Cheese Saver Sub Toastie and X-Spicy Nacho
+                  Chicken Saver Sub to Savers
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold">23/06/2024</h3>
+              <ul className="list-disc ml-4">
+                <li>
+                  Added All Star Chicken and Chimichurri Steak to Signature
+                  Series
+                </li>
+                <li>Added Chimichurri Sauce to Sauces</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold">04/04/2024</h3>
+              <ul className="list-disc ml-4">
+                <li>
+                  Added Chipotle Cheese Steak and BBQ Baller to Signature Series
+                </li>
+                <li>Added Hunter's Chicken to Signature Series</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
