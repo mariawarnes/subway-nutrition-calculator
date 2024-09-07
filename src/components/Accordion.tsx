@@ -45,11 +45,18 @@ const Accordion = ({
         (old ? preset.old === old : !preset.old)
     );
 
-  const handlePresetClick = (presetId: string, presetIngredients: string[]) => {
+  const handlePresetClick = (
+    presetId: string,
+    presetIngredients: Ingredient[]
+  ) => {
     if (activePreset === presetId) {
       setActivePreset(null);
       clearSelected();
     } else {
+      const presetIngredientIds = presetIngredients.map(
+        (ingredient) => ingredient.id
+      );
+
       selectPreset(
         [
           ...products,
@@ -61,7 +68,7 @@ const Accordion = ({
           ...extras,
           ...toppings,
         ],
-        presetIngredients
+        presetIngredientIds
       );
       setActivePreset(presetId);
     }

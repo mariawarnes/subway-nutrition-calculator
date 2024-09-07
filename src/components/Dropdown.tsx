@@ -1,12 +1,13 @@
 import { Listbox } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
 import Check from "./Check";
+import { Ingredient } from "../types";
 
 export interface DropdownProps {
   title: string;
   options: Array<{ id: string | number; name: string }>;
-  selected: any;
-  setSelected: (value: any) => void;
+  selected: Ingredient[];
+  setSelected: (value: Ingredient[]) => void;
   className?: string;
   multiple?: boolean;
 }
@@ -24,7 +25,7 @@ const Dropdown = ({
       <Listbox value={selected} onChange={setSelected} multiple={multiple}>
         <Listbox.Button className=" font-sans relative font-medium shadow-custom  w-full p-3 rounded-lg flex items-center justify-between">
           {multiple
-            ? selected?.map((single: any) => single.name).join(", ") ||
+            ? selected?.map((single: Ingredient[]) => single.name).join(", ") ||
               `Choose ${title}`
             : selected?.name || `Choose a ${title}`}
           <span className="pointer-events-none flex items-center justify-center">

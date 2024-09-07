@@ -108,27 +108,37 @@ function App() {
 
   const selectPreset = (
     ingredients: Ingredient[],
-    presetIngredientIds: string[]
+    presetIngredients: Ingredient[]
   ): void => {
     const filterByPrefixMulti = (prefix: string) =>
       ingredients.filter((ingredient: { id: string }) =>
-        presetIngredientIds.some(
-          (id: string) => ingredient.id === id && id.startsWith(prefix)
+        presetIngredients.some(
+          (preset) =>
+            ingredient.id === preset.id && preset.id.startsWith(prefix)
         )
       );
 
-    setSelectedProduct(
-      ingredients.find((ingredient) => ingredient.id == "p-1") ?? null
+    const selectedProduct = ingredients.find(
+      (ingredient) => ingredient.id === "p-1"
     );
-    setSelectedProteins(filterByPrefixMulti("m-"));
-    setSelectedBread(
-      ingredients.find((ingredient) => ingredient.id == "b-6") ?? null
+    const selectedProteins = filterByPrefixMulti("m-");
+    const selectedBread = ingredients.find(
+      (ingredient) => ingredient.id === "b-6"
     );
-    setSelectedCheeses(filterByPrefixMulti("c-"));
-    setSelectedSauces(filterByPrefixMulti("s-"));
-    setSelectedSalads(filterByPrefixMulti("v-"));
-    setSelectedExtras(filterByPrefixMulti("e-"));
-    setSelectedToppings(filterByPrefixMulti("t-"));
+    const selectedCheeses = filterByPrefixMulti("c-");
+    const selectedSauces = filterByPrefixMulti("s-");
+    const selectedSalads = filterByPrefixMulti("v-");
+    const selectedExtras = filterByPrefixMulti("e-");
+    const selectedToppings = filterByPrefixMulti("t-");
+
+    setSelectedProduct(selectedProduct ?? null);
+    setSelectedProteins(selectedProteins);
+    setSelectedBread(selectedBread ?? null);
+    setSelectedCheeses(selectedCheeses);
+    setSelectedSauces(selectedSauces);
+    setSelectedSalads(selectedSalads);
+    setSelectedExtras(selectedExtras);
+    setSelectedToppings(selectedToppings);
   };
 
   const calculateTotalsFunction = () => {
