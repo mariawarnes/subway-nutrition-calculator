@@ -1,13 +1,19 @@
 import { Listbox } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
 import Check from "./Check";
-import { Ingredient } from "../types";
 
 export interface DropdownProps {
   title: string;
   options: Array<{ id: string | number; name: string }>;
-  selected: Ingredient[];
-  setSelected: (value: Ingredient[]) => void;
+  selected:
+    | { id: string | number; name: string }
+    | { id: string | number; name: string }[]
+    | null;
+  setSelected: (
+    value:
+      | { id: string | number; name: string }
+      | { id: string | number; name: string }[]
+  ) => void;
   className?: string;
   multiple?: boolean;
 }
@@ -23,11 +29,14 @@ const Dropdown = ({
   return (
     <div className={`relative text-sm ${className}`}>
       <Listbox value={selected} onChange={setSelected} multiple={multiple}>
-        <Listbox.Button className=" font-sans relative font-medium shadow-custom  w-full p-3 rounded-lg flex items-center justify-between">
+        <Listbox.Button className="font-sans relative font-medium shadow-custom w-full p-3 rounded-lg flex items-center justify-between">
           {multiple
-            ? selected?.map((single: Ingredient[]) => single.name).join(", ") ||
-              `Choose ${title}`
-            : selected?.name || `Choose a ${title}`}
+            ? Array.isArray(selected)
+              ? selected.map((single) => single.name).join(", ")
+              : `Choose ${title}`
+            : selected
+            ? (selected as { id: string | number; name: string }).name
+            : `Choose a ${title}`}
           <span className="pointer-events-none flex items-center justify-center">
             <BsChevronDown aria-hidden="true" />
           </span>
