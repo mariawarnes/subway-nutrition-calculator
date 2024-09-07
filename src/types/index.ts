@@ -42,3 +42,12 @@ export interface MultiSelectDropdownProps {
   setSelected: Dispatch<SetStateAction<Ingredient[]>>;
   className?: string;
 }
+
+export interface RawIngredient {
+  id: string | number;
+  name: string;
+  calories?: number;
+  protein?: number;
+  carbs?: number;
+  fat?: number;
+}

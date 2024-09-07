@@ -1,7 +1,9 @@
 import Dropdown, { DropdownProps } from "./Dropdown";
+import { Ingredient } from "../types";
 
-interface SingleSelectDropdownProps extends DropdownProps {
-  selected: { id: string | number; name: string } | null;
+interface SingleSelectDropdownProps extends DropdownProps<Ingredient, false> {
+  selected: Ingredient | null;
+  setSelected: (value: Ingredient | null) => void;
 }
 
 const SingleSelectDropdown = ({

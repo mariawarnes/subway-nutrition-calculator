@@ -20,7 +20,7 @@ interface AccordionProps {
   activePreset: string | null;
   selectPreset: (
     ingredients: Ingredient[],
-    presetIngredientIds: string[]
+    presetIngredients: Ingredient[]
   ) => void;
   setActivePreset: React.Dispatch<React.SetStateAction<string | null>>;
   clearSelected: () => void;
@@ -53,10 +53,6 @@ const Accordion = ({
       setActivePreset(null);
       clearSelected();
     } else {
-      const presetIngredientIds = presetIngredients.map(
-        (ingredient) => ingredient.id
-      );
-
       selectPreset(
         [
           ...products,
@@ -68,7 +64,7 @@ const Accordion = ({
           ...extras,
           ...toppings,
         ],
-        presetIngredientIds
+        presetIngredients
       );
       setActivePreset(presetId);
     }

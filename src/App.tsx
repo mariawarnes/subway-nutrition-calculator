@@ -4,20 +4,48 @@ import MultiSelectDropdown from "./components/MultiSelectDropdown";
 import Button from "./components/Button";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import {
-  products,
-  breads,
-  proteins,
-  cheeses,
-  salads,
-  sauces,
-  extras,
-  toppings,
+  products as rawProducts,
+  breads as rawBreads,
+  proteins as rawProteins,
+  cheeses as rawCheeses,
+  salads as rawSalads,
+  sauces as rawSauces,
+  extras as rawExtras,
+  toppings as rawToppings,
 } from "./data/ingredients.json";
 import { presets } from "./data/presets.json";
 import { Ingredient, Preset, PresetWithIds } from "./types";
 import Checkbox from "./components/Checkbox";
 import Accordion from "./components/Accordion";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
+
+// Define a type for raw ingredients
+interface RawIngredient {
+  id: string | number;
+  name: string;
+  calories?: number;
+  protein?: number;
+  carbs?: number;
+  fat?: number;
+}
+
+// Convert all IDs to strings if they aren't already
+const formatIngredients = (ingredients: RawIngredient[]): Ingredient[] => {
+  return ingredients.map((ingredient) => ({
+    ...ingredient,
+    id: String(ingredient.id), // Ensure the ID is a string
+  }));
+};
+
+// Format the ingredients
+const products = formatIngredients(rawProducts);
+const breads = formatIngredients(rawBreads);
+const proteins = formatIngredients(rawProteins);
+const cheeses = formatIngredients(rawCheeses);
+const salads = formatIngredients(rawSalads);
+const sauces = formatIngredients(rawSauces);
+const extras = formatIngredients(rawExtras);
+const toppings = formatIngredients(rawToppings);
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState<Ingredient | null>(

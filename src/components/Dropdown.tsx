@@ -2,40 +2,36 @@ import { Listbox } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
 import Check from "./Check";
 
-export interface DropdownProps {
+export interface DropdownProps<T, Multiple extends boolean = false> {
   title: string;
-  options: Array<{ id: string | number; name: string }>;
-  selected:
-    | { id: string | number; name: string }
-    | { id: string | number; name: string }[]
-    | null;
-  setSelected: (
-    value:
-      | { id: string | number; name: string }
-      | { id: string | number; name: string }[]
-  ) => void;
+  options: T[];
+  selected: Multiple extends true ? T[] : T | null;
+  setSelected: (value: Multiple extends true ? T[] : T | null) => void;
   className?: string;
-  multiple?: boolean;
+  multiple?: Multiple;
 }
 
-const Dropdown = ({
+const Dropdown = <
+  T extends { id: string; name: string },
+  Multiple extends boolean = false
+>({
   title,
   options,
   selected,
   setSelected,
   className,
-  multiple = false,
-}: DropdownProps) => {
+  multiple = false as Multiple,
+}: DropdownProps<T, Multiple>) => {
   return (
     <div className={`relative text-sm ${className}`}>
       <Listbox value={selected} onChange={setSelected} multiple={multiple}>
         <Listbox.Button className="font-sans relative font-medium shadow-custom w-full p-3 rounded-lg flex items-center justify-between">
           {multiple
-            ? Array.isArray(selected)
+            ? Array.isArray(selected) && selected.length > 0
               ? selected.map((single) => single.name).join(", ")
-              : `Choose ${title}`
+              : `Choose ${title}` // Updated to show the title when no options are selected
             : selected
-            ? (selected as { id: string | number; name: string }).name
+            ? (selected as T).name
             : `Choose a ${title}`}
           <span className="pointer-events-none flex items-center justify-center">
             <BsChevronDown aria-hidden="true" />
