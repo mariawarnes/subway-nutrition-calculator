@@ -34,4 +34,4 @@ Single-Page React App tool designed to provide a user-friendly alternative to th
 ## Demo
 [https://subway-nutrition-calculator.netlify.com](https://subway-nutrition-calculator.netlify.com)
 
-[![img](https://subway-nutrition-calculator.netlify.app/thumbnail.jpg)](https://subway-nutrition-calculator.netlify.com)
+[![img](https://subway-nutrition-calculator.netlify.app/image.png)](https://subway-nutrition-calculator.netlify.com)
