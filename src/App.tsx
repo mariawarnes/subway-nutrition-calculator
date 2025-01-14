@@ -110,7 +110,7 @@ function App() {
   );
 
   const renderArrow = (current: number, previous: number) => {
-    console.log("Current:", current, "Previous:", previous);
+    // console.log("Current:", current, "Previous:", previous);
 
     if (current > previous) {
       return <BsArrowUp className="inline mr-2" />;
@@ -232,8 +232,8 @@ function App() {
   ]);
 
   useEffect(() => {
-    console.log("Previous Totals:", previousTotals);
-    console.log("Current Totals:", calculateTotals);
+    // console.log("Previous Totals:", previousTotals);
+    // console.log("Current Totals:", calculateTotals);
     setPreviousTotals(calculateTotals);
   }, [calculateTotals]);
 
@@ -411,6 +411,24 @@ function App() {
         <div className="space-y-2">
           <h2 className="sub-heading !mt-0">Updates</h2>
           <div className="space-y-6">
+            <div>
+              <h3 className="font-bold">14/01/2025</h3>
+              <ul className="list-disc ml-4 max-w-prose">
+                <li>Removed Cheese &amp; Jalapeno to Bread</li>
+                <li>Added Taco Beef to Proteins</li>
+                <li>
+                  Retired The Baller, Notorious B.M.T.®, Big Bombay, Tuna Tato,
+                  Plant Picante (V), Legendary Teriyaki, All Star Chicken, Steak
+                  Texicana, X-Spicy Nacho Chicken Saver Sub and Cheese &amp;
+                  Tomato Saver Sub
+                </li>
+                <li>
+                  Added Big Cheese Steak Toastie, Stacked Bacon & Cheese
+                  Toastie, Mexicana Beef Crunch, Triple Cheese Toastie and Taco
+                  Beef Saver Sub
+                </li>
+              </ul>
+            </div>
             <div>
               <h3 className="font-bold">05/09/2024</h3>
               <ul className="list-disc ml-4 max-w-prose">

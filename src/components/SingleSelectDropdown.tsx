@@ -1,7 +1,9 @@
-import Dropdown, { DropdownProps } from "./Dropdown";
+import Dropdown from "./Dropdown";
 import { Ingredient } from "../types";
 
-interface SingleSelectDropdownProps extends DropdownProps<Ingredient, false> {
+interface SingleSelectDropdownProps {
+  title: string;
+  options: Ingredient[];
   selected: Ingredient | null;
   setSelected: (value: Ingredient | null) => void;
 }
@@ -11,7 +13,6 @@ const SingleSelectDropdown = ({
   options,
   selected,
   setSelected,
-  className,
 }: SingleSelectDropdownProps) => {
   return (
     <Dropdown
@@ -19,7 +20,6 @@ const SingleSelectDropdown = ({
       options={options}
       selected={selected}
       setSelected={setSelected}
-      className={className}
       multiple={false}
     />
   );

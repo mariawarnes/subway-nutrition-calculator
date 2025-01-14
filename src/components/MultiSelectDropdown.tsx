@@ -1,9 +1,7 @@
 import Dropdown, { DropdownProps } from "./Dropdown";
-import { Ingredient } from "../types";
 
-interface MultiSelectDropdownProps extends DropdownProps<Ingredient, true> {
-  selected: Ingredient[];
-  setSelected: (value: Ingredient[]) => void;
+interface MultiSelectDropdownProps extends DropdownProps {
+  selected: Array<{ id: string | number; name: string }>;
 }
 
 const MultiSelectDropdown = ({

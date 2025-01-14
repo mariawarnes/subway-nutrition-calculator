@@ -2,37 +2,52 @@ import { Listbox } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
 import Check from "./Check";
 
-export interface DropdownProps<T, Multiple extends boolean = false> {
+export interface DropdownProps {
   title: string;
-  options: T[];
-  selected: Multiple extends true ? T[] : T | null;
-  setSelected: (value: Multiple extends true ? T[] : T | null) => void;
+  options: Array<{ id: string | number; name: string }>;
+  selected: any[];
+  setSelected: (value: any[]) => void;
   className?: string;
-  multiple?: Multiple;
+  multiple?: boolean;
 }
 
-const Dropdown = <
-  T extends { id: string; name: string },
-  Multiple extends boolean = false
->({
+const Dropdown = ({
   title,
   options,
-  selected,
+  selected: passedSelected = [],
   setSelected,
   className,
-  multiple = false as Multiple,
-}: DropdownProps<T, Multiple>) => {
+  multiple = false,
+}: DropdownProps) => {
+  // Ensure passedSelected is always an array
+  const selectedArray = Array.isArray(passedSelected)
+    ? passedSelected
+    : [passedSelected];
+
+  const handleSelect = (option: any) => {
+    if (multiple) {
+      setSelected([...selectedArray, option]);
+    } else {
+      setSelected([option]);
+    }
+  };
+
+  const isSelected = (option: any) => {
+    return selectedArray.some((selected: any) => selected?.id === option.id);
+  };
+
   return (
     <div className={`relative text-sm ${className}`}>
-      <Listbox value={selected} onChange={setSelected} multiple={multiple}>
+      <Listbox
+        value={selectedArray}
+        onChange={handleSelect}
+        multiple={multiple}
+      >
         <Listbox.Button className="font-sans relative font-medium shadow-custom w-full p-3 rounded-lg flex items-center justify-between">
           {multiple
-            ? Array.isArray(selected) && selected.length > 0
-              ? selected.map((single) => single.name).join(", ")
-              : `Choose ${title}` // Updated to show the title when no options are selected
-            : selected
-            ? (selected as T).name
-            : `Choose a ${title}`}
+            ? selectedArray?.map((single: any) => single.name).join(", ") ||
+              `Choose ${title}`
+            : selectedArray?.[0]?.name || `Choose a ${title}`}
           <span className="pointer-events-none flex items-center justify-center">
             <BsChevronDown aria-hidden="true" />
           </span>
@@ -40,31 +55,26 @@ const Dropdown = <
         <Listbox.Options className="absolute left-0 right-0 top-8 z-10 mt-1 max-h-60 overflow-auto bg-white py-2 px-0 text-subway-dark-green shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm rounded-lg">
           {options.map((option) => (
             <Listbox.Option
-              className={({ active, selected }) =>
-                `relative flex flex-row items-center p-3 select-none font-semibold hover:bg-subway-green hover:text-white ${
-                  active
-                    ? "bg-subway-green text-white"
-                    : "text-subway-dark-green"
-                } ${
-                  selected
-                    ? "bg-subway-green text-white font-bold"
-                    : "text-gray-700"
-                }`
-              }
               key={option.id}
               value={option}
+              className={({ active }) =>
+                `relative flex flex-row items-center cursor-pointer p-3 select-none font-semibold ${
+                  isSelected(option) || active
+                    ? "bg-subway-green text-white font-bold"
+                    : "text-subway-dark-green"
+                }`
+              }
+              onClick={() => handleSelect(option)}
             >
-              {({ selected }) => (
-                <>
-                  <Check
-                    className="mr-4"
-                    checked={selected}
-                    onClick={() => {}}
-                    id={""}
-                  />
-                  {option.name}
-                </>
-              )}
+              <>
+                <Check
+                  className="mr-4"
+                  checked={isSelected(option)}
+                  onClick={() => {}}
+                  id={option.id.toString()}
+                />
+                {option.name}
+              </>
             </Listbox.Option>
           ))}
         </Listbox.Options>
