@@ -1,12 +1,13 @@
 import { Listbox } from "@headlessui/react";
-import { BsChevronDown } from "react-icons/bs";
+import { FaChevronDown } from "react-icons/fa";
 import Check from "./Check";
+import { Ingredient } from "../types";
 
 export interface DropdownProps {
   title: string;
-  options: Array<{ id: string | number; name: string }>;
-  selected: any[];
-  setSelected: (value: any[]) => void;
+  options: Ingredient[];
+  selected: Ingredient[] | Ingredient | null;
+  setSelected: (value: Ingredient[] | Ingredient | null) => void;
   className?: string;
   multiple?: boolean;
 }
@@ -14,42 +15,65 @@ export interface DropdownProps {
 const Dropdown = ({
   title,
   options,
-  selected: passedSelected = [],
+  selected: passedSelected,
   setSelected,
-  className,
+  className = "",
   multiple = false,
 }: DropdownProps) => {
-  // Ensure passedSelected is always an array
-  const selectedArray = Array.isArray(passedSelected)
-    ? passedSelected
-    : [passedSelected];
+  // Convert to array for internal handling
+  const selectedArray = passedSelected
+    ? Array.isArray(passedSelected)
+      ? passedSelected
+      : [passedSelected]
+    : [];
 
-  const handleSelect = (option: any) => {
+  const handleSelect = (value: Ingredient | Ingredient[]) => {
+    if (Array.isArray(value)) {
+      setSelected(value.length > 0 ? value : null);
+      return;
+    }
+
     if (multiple) {
-      setSelected([...selectedArray, option]);
+      const isAlreadySelected = selectedArray.some(
+        (item) => item.id === value.id
+      );
+      if (isAlreadySelected) {
+        const newSelected = selectedArray.filter(
+          (item) => item.id !== value.id
+        );
+        setSelected(newSelected.length > 0 ? newSelected : null);
+      } else {
+        setSelected([...selectedArray, value]);
+      }
     } else {
-      setSelected([option]);
+      const isAlreadySelected = selectedArray.some(
+        (item) => item.id === value.id
+      );
+      setSelected(isAlreadySelected ? null : value);
     }
   };
 
-  const isSelected = (option: any) => {
-    return selectedArray.some((selected: any) => selected?.id === option.id);
+  const isSelected = (option: Ingredient) => {
+    return selectedArray.some((selected) => selected.id === option.id);
   };
 
   return (
     <div className={`relative text-sm ${className}`}>
       <Listbox
         value={selectedArray}
-        onChange={handleSelect}
+        onChange={(value: Ingredient | Ingredient[]) => handleSelect(value)}
         multiple={multiple}
       >
         <Listbox.Button className="font-sans relative font-medium shadow-custom w-full p-3 rounded-lg flex items-center justify-between">
           {multiple
-            ? selectedArray?.map((single: any) => single.name).join(", ") ||
-              `Choose ${title}`
-            : selectedArray?.[0]?.name || `Choose a ${title}`}
+            ? selectedArray.length > 0
+              ? selectedArray.map((item) => item.name).join(", ")
+              : `Choose ${title}`
+            : selectedArray.length > 0
+            ? selectedArray[0].name
+            : `Choose a ${title}`}
           <span className="pointer-events-none flex items-center justify-center">
-            <BsChevronDown aria-hidden="true" />
+            <FaChevronDown aria-hidden="true" />
           </span>
         </Listbox.Button>
         <Listbox.Options className="absolute left-0 right-0 top-8 z-10 mt-1 max-h-60 overflow-auto bg-white py-2 px-0 text-subway-dark-green shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm rounded-lg">

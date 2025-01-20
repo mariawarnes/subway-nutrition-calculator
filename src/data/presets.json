@@ -195,14 +195,15 @@
         "v-5",
         "v-8",
         "v-3",
-        "s-4"
+        "s-4",
+        "e-11"
       ]
     },
     {
       "id": "x-20",
       "name": "The BBQ Baller",
       "old": true,
-      "ingredients": ["m-6", "c-4", "t-2", "v-4", "v-5", "v-8", "s-6"]
+      "ingredients": ["m-6", "c-4", "t-2", "v-4", "v-5", "v-8", "s-6", "e-11"]
     },
     {
       "id": "x-21",
@@ -241,7 +242,17 @@
       "id": "x-23",
       "name": "Chimichurri Steak",
       "old": true,
-      "ingredients": ["m-16", "c-1", "v-4", "v-10", "v-5", "v-3", "t-2", "s-19"]
+      "ingredients": [
+        "m-16",
+        "c-1",
+        "v-4",
+        "v-10",
+        "v-5",
+        "v-3",
+        "t-2",
+        "s-19",
+        "e-11"
+      ]
     },
     {
       "id": "x-24",

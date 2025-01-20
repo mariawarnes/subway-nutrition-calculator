@@ -19,8 +19,14 @@ const SingleSelectDropdown = ({
       title={title}
       options={options}
       selected={selected}
-      setSelected={setSelected}
-      multiple={false}
+      setSelected={(value) => {
+        // Ensure we only pass Ingredient | null to the setter
+        if (Array.isArray(value)) {
+          setSelected(value.length > 0 ? value[0] : null);
+        } else {
+          setSelected(value);
+        }
+      }}
     />
   );
 };
