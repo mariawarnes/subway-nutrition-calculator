@@ -5,12 +5,13 @@ import Button from "./components/Button";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import {
   products as rawProducts,
-  breads as rawBreads,
+  carbohydrates as rawCarbohydrates,
   proteins as rawProteins,
   cheeses as rawCheeses,
   salads as rawSalads,
   sauces as rawSauces,
   extras as rawExtras,
+  other as rawOther,
   toppings as rawToppings,
 } from "./data/ingredients.json";
 import { presets } from "./data/presets.json";
@@ -39,25 +40,28 @@ const formatIngredients = (ingredients: RawIngredient[]): Ingredient[] => {
 
 // Format the ingredients
 const products = formatIngredients(rawProducts);
-const breads = formatIngredients(rawBreads);
+const carbohydrates = formatIngredients(rawCarbohydrates);
 const proteins = formatIngredients(rawProteins);
 const cheeses = formatIngredients(rawCheeses);
 const salads = formatIngredients(rawSalads);
 const sauces = formatIngredients(rawSauces);
 const extras = formatIngredients(rawExtras);
+const other = formatIngredients(rawOther);
 const toppings = formatIngredients(rawToppings);
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState<Ingredient | null>(
     null
   );
-  const [selectedBread, setSelectedBread] = useState<Ingredient | null>(null);
+  const [selectedCarbohydrate, setSelectedCarbohydrate] =
+    useState<Ingredient | null>(null);
   const [selectedProteins, setSelectedProteins] = useState<Ingredient[]>([]);
   const [doubleProtein, setDoubleProtein] = useState<boolean>(false);
   const [selectedCheeses, setSelectedCheeses] = useState<Ingredient[]>([]);
   const [selectedSalads, setSelectedSalads] = useState<Ingredient[]>([]);
   const [selectedSauces, setSelectedSauces] = useState<Ingredient[]>([]);
   const [selectedExtras, setSelectedExtras] = useState<Ingredient[]>([]);
+  const [selectedOther, setSelectedOther] = useState<Ingredient[]>([]);
   const [selectedToppings, setSelectedToppings] = useState<Ingredient[]>([]);
   const [activePreset, setActivePreset] = useState<string | null>(null);
 
@@ -71,12 +75,13 @@ function App() {
   // Combine all ingredients into a single array
   const allIngredients: Ingredient[] = [
     ...products,
-    ...breads,
+    ...carbohydrates,
     ...proteins,
     ...cheeses,
     ...sauces,
     ...salads,
     ...extras,
+    ...other,
     ...toppings,
   ];
 
@@ -123,13 +128,14 @@ function App() {
 
   const clearSelected = () => {
     setSelectedProduct(null);
-    setSelectedBread(null);
+    setSelectedCarbohydrate(null);
     setSelectedProteins([]);
     setDoubleProtein(false);
     setSelectedCheeses([]);
     setSelectedSalads([]);
     setSelectedSauces([]);
     setSelectedExtras([]);
+    setSelectedOther([]);
     setSelectedToppings([]);
     setActivePreset(null);
   };
@@ -150,22 +156,24 @@ function App() {
       (ingredient) => ingredient.id === "p-1"
     );
     const selectedProteins = filterByPrefixMulti("m-");
-    const selectedBread = ingredients.find(
+    const selectedCarbohydrate = ingredients.find(
       (ingredient) => ingredient.id === "b-6"
     );
     const selectedCheeses = filterByPrefixMulti("c-");
     const selectedSauces = filterByPrefixMulti("s-");
     const selectedSalads = filterByPrefixMulti("v-");
     const selectedExtras = filterByPrefixMulti("e-");
+    const selectedOther = filterByPrefixMulti("o-");
     const selectedToppings = filterByPrefixMulti("t-");
 
     setSelectedProduct(selectedProduct ?? null);
     setSelectedProteins(selectedProteins);
-    setSelectedBread(selectedBread ?? null);
+    setSelectedCarbohydrate(selectedCarbohydrate ?? null);
     setSelectedCheeses(selectedCheeses);
     setSelectedSauces(selectedSauces);
     setSelectedSalads(selectedSalads);
     setSelectedExtras(selectedExtras);
+    setSelectedOther(selectedOther);
     setSelectedToppings(selectedToppings);
   };
 
@@ -174,12 +182,13 @@ function App() {
 
     const allSelectedIngredients = [
       selectedProduct,
-      selectedBread,
+      selectedCarbohydrate,
       ...selectedProteins,
       ...selectedCheeses,
       ...selectedSalads,
       ...selectedSauces,
       ...selectedExtras,
+      ...selectedOther,
       ...selectedToppings,
     ].filter(Boolean);
 
@@ -221,12 +230,13 @@ function App() {
 
   const calculateTotals = useMemo(calculateTotalsFunction, [
     selectedProduct,
-    selectedBread,
+    selectedCarbohydrate,
     selectedProteins,
     selectedCheeses,
     selectedSalads,
     selectedSauces,
     selectedExtras,
+    selectedOther,
     selectedToppings,
     doubleProtein,
   ]);
@@ -290,9 +300,9 @@ function App() {
             {(selectedProduct?.id == "p-1" || selectedProduct?.id == "p-2") && (
               <SingleSelectDropdown
                 title={"Bread"}
-                options={breads}
-                selected={selectedBread}
-                setSelected={setSelectedBread}
+                options={carbohydrates}
+                selected={selectedCarbohydrate}
+                setSelected={setSelectedCarbohydrate}
               />
             )}
             {/* Protein */}
@@ -338,6 +348,13 @@ function App() {
               options={extras}
               selected={selectedExtras}
               setSelected={setSelectedExtras}
+            />
+            {/* Other */}
+            <MultiSelectDropdown
+              title={"Other"}
+              options={other}
+              selected={selectedOther}
+              setSelected={setSelectedOther}
             />
             {/* Toppings */}
             <MultiSelectDropdown
@@ -412,9 +429,34 @@ function App() {
           <h2 className="sub-heading !mt-0">Updates</h2>
           <div className="space-y-6">
             <div>
+              <h3 className="font-bold">02/05/2026</h3>
+              <ul className="list-disc ml-4 max-w-prose">
+                <li>Added Spud to Products</li>
+                <li>
+                  Added Breaded Chicken Mini Fillet, Roast Chicken Breast
+                  Strips, Shawarma Spiced Chicken and Smashed Falafel to
+                  Proteins
+                </li>
+                <li>Added Yoghurt, Mint and Garlic Sauce to Sauces</li>
+                <li>
+                  Added Other dropdown with Butter and Heinz Baked Beans
+                </li>
+                <li>
+                  Added Honey Mustard Deli Toastie, Sweet Chilli Breaded
+                  Chicken Fillet & Bacon and Honey Mustard BBQ to Signature
+                  Series
+                </li>
+                <li>Added Triple Cheese Saver Sub Toastie to Savers</li>
+                <li>
+                  Retired Furious Chicken, Mexicana Beef Crunch and Taco Beef
+                  Saver Sub
+                </li>
+              </ul>
+            </div>
+            <div>
               <h3 className="font-bold">14/01/2025</h3>
               <ul className="list-disc ml-4 max-w-prose">
-                <li>Removed Cheese &amp; Jalapeno to Bread</li>
+                <li>Removed Cheese &amp; Jalapeno from Bread</li>
                 <li>Added Taco Beef to Proteins</li>
                 <li>
                   Retired The Baller, Notorious B.M.T.®, Big Bombay, Tuna Tato,

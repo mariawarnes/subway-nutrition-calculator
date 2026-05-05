@@ -5,12 +5,13 @@ import { BsChevronDown } from "react-icons/bs";
 import Chip from "./Chip";
 import {
   products,
-  breads,
+  carbohydrates,
   proteins,
   cheeses,
   salads,
   sauces,
   extras,
+  other,
   toppings,
 } from "../data/ingredients.json";
 
@@ -56,12 +57,13 @@ const Accordion = ({
       selectPreset(
         [
           ...products,
-          ...breads,
+          ...carbohydrates,
           ...proteins,
           ...cheeses,
           ...salads,
           ...sauces,
           ...extras,
+          ...other,
           ...toppings,
         ],
         presetIngredients
@@ -110,11 +112,11 @@ const Accordion = ({
           renderPresets("Savers", currentSaverPresets)}
         {oldSignaturePresets.length !== 0 &&
           renderPresets(
-            "Retired Signatures (since April 2024)",
+            "Retired Signatures (since May 2026)",
             oldSignaturePresets
           )}
         {oldSaverPresets.length !== 0 &&
-          renderPresets("Retired Savers (since April 2024)", oldSaverPresets)}
+          renderPresets("Retired Savers (since May 2026)", oldSaverPresets)}
       </Disclosure.Panel>
     </Disclosure>
   );
