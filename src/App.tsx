@@ -1,24 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
-import SingleSelectDropdown from "./components/SingleSelectDropdown";
-import MultiSelectDropdown from "./components/MultiSelectDropdown";
-import Button from "./components/Button";
+import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import Accordion from "./components/Accordion";
+import Button from "./components/Button";
+import Checkbox from "./components/Checkbox";
+import MultiSelectDropdown from "./components/MultiSelectDropdown";
+import SingleSelectDropdown from "./components/SingleSelectDropdown";
 import {
-  products as rawProducts,
   carbohydrates as rawCarbohydrates,
-  proteins as rawProteins,
   cheeses as rawCheeses,
-  salads as rawSalads,
-  sauces as rawSauces,
   extras as rawExtras,
   other as rawOther,
+  products as rawProducts,
+  proteins as rawProteins,
+  salads as rawSalads,
+  sauces as rawSauces,
   toppings as rawToppings,
 } from "./data/ingredients.json";
 import { presets } from "./data/presets.json";
 import { Ingredient, Preset, PresetWithIds } from "./types";
-import Checkbox from "./components/Checkbox";
-import Accordion from "./components/Accordion";
-import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 
 // Define a type for raw ingredients
 interface RawIngredient {
@@ -51,7 +51,7 @@ const toppings = formatIngredients(rawToppings);
 
 function App() {
   const [selectedProduct, setSelectedProduct] = useState<Ingredient | null>(
-    null
+    null,
   );
   const [selectedCarbohydrate, setSelectedCarbohydrate] =
     useState<Ingredient | null>(null);
@@ -100,7 +100,7 @@ function App() {
           throw new Error(`Ingredient with id ${id} not found`);
         }
         return ingredient;
-      }
+      },
     );
 
     return {
@@ -111,7 +111,7 @@ function App() {
 
   // Apply the mapping to all presets
   const mappedPresets: Preset[] = (presets as PresetWithIds[]).map(
-    mapPresetIngredients
+    mapPresetIngredients,
   );
 
   const renderArrow = (current: number, previous: number) => {
@@ -153,19 +153,19 @@ function App() {
 
   const selectPreset = (
     ingredients: Ingredient[],
-    presetIngredients: Ingredient[]
+    presetIngredients: Ingredient[],
   ): void => {
     const findNoneIngredient = (options: Ingredient[]) =>
       options.find(
-        (ingredient) => ingredient.name.trim().toLowerCase() === "none"
+        (ingredient) => ingredient.name.trim().toLowerCase() === "none",
       );
 
     const filterByPrefixMulti = (options: Ingredient[], prefix: string) => {
       const selected = options.filter((ingredient) =>
         presetIngredients.some(
           (preset) =>
-            ingredient.id === preset.id && preset.id.startsWith(prefix)
-        )
+            ingredient.id === preset.id && preset.id.startsWith(prefix),
+        ),
       );
 
       if (selected.length > 0) {
@@ -177,11 +177,11 @@ function App() {
     };
 
     const selectedProduct = ingredients.find(
-      (ingredient) => ingredient.id === "p-1"
+      (ingredient) => ingredient.id === "p-1",
     );
     const selectedProteins = filterByPrefixMulti(proteins, "m-");
     const selectedCarbohydrate = ingredients.find(
-      (ingredient) => ingredient.id === "b-6"
+      (ingredient) => ingredient.id === "b-6",
     );
     const selectedCheeses = filterByPrefixMulti(cheeses, "c-");
     const selectedSauces = filterByPrefixMulti(sauces, "s-");
@@ -291,7 +291,7 @@ function App() {
               Sub
             </span>
             <span className="text-subway-green font-oswald uppercase">way</span>{" "}
-            Nutrition Calculator
+            Macros Calculator
           </h1>
           <p className="body-copy">
             Based on the nutritional values available at{" "}
@@ -415,7 +415,7 @@ function App() {
                     {Math.round(calculateTotals.calories)}
                     {renderArrow(
                       calculateTotals.calories,
-                      previousTotals.calories
+                      previousTotals.calories,
                     )}
                   </td>
                 </tr>
@@ -425,7 +425,7 @@ function App() {
                     {Math.round(calculateTotals.protein)}
                     {renderArrow(
                       calculateTotals.protein,
-                      previousTotals.protein
+                      previousTotals.protein,
                     )}
                   </td>
                 </tr>
@@ -479,13 +479,10 @@ function App() {
                   Proteins
                 </li>
                 <li>Added Yoghurt, Mint and Garlic Sauce to Sauces</li>
+                <li>Added Other dropdown with Butter and Heinz Baked Beans</li>
                 <li>
-                  Added Other dropdown with Butter and Heinz Baked Beans
-                </li>
-                <li>
-                  Added Honey Mustard Deli Toastie, Sweet Chilli Breaded
-                  Chicken Fillet & Bacon and Honey Mustard BBQ to Signature
-                  Series
+                  Added Honey Mustard Deli Toastie, Sweet Chilli Breaded Chicken
+                  Fillet & Bacon and Honey Mustard BBQ to Signature Series
                 </li>
                 <li>Added Triple Cheese Saver Sub Toastie to Savers</li>
                 <li>
