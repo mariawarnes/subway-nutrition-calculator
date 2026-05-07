@@ -126,6 +126,17 @@ function App() {
     }
   };
 
+  const productUsesBread = (product: Ingredient | null) =>
+    product?.id === "p-1" || product?.id === "p-2";
+
+  const handleProductSelect = (product: Ingredient | null) => {
+    setSelectedProduct(product);
+
+    if (!productUsesBread(product)) {
+      setSelectedCarbohydrate(null);
+    }
+  };
+
   const clearSelected = () => {
     setSelectedProduct(null);
     setSelectedCarbohydrate(null);
@@ -144,27 +155,40 @@ function App() {
     ingredients: Ingredient[],
     presetIngredients: Ingredient[]
   ): void => {
-    const filterByPrefixMulti = (prefix: string) =>
-      ingredients.filter((ingredient: { id: string }) =>
+    const findNoneIngredient = (options: Ingredient[]) =>
+      options.find(
+        (ingredient) => ingredient.name.trim().toLowerCase() === "none"
+      );
+
+    const filterByPrefixMulti = (options: Ingredient[], prefix: string) => {
+      const selected = options.filter((ingredient) =>
         presetIngredients.some(
           (preset) =>
             ingredient.id === preset.id && preset.id.startsWith(prefix)
         )
       );
 
+      if (selected.length > 0) {
+        return selected;
+      }
+
+      const noneIngredient = findNoneIngredient(options);
+      return noneIngredient ? [noneIngredient] : [];
+    };
+
     const selectedProduct = ingredients.find(
       (ingredient) => ingredient.id === "p-1"
     );
-    const selectedProteins = filterByPrefixMulti("m-");
+    const selectedProteins = filterByPrefixMulti(proteins, "m-");
     const selectedCarbohydrate = ingredients.find(
       (ingredient) => ingredient.id === "b-6"
     );
-    const selectedCheeses = filterByPrefixMulti("c-");
-    const selectedSauces = filterByPrefixMulti("s-");
-    const selectedSalads = filterByPrefixMulti("v-");
-    const selectedExtras = filterByPrefixMulti("e-");
-    const selectedOther = filterByPrefixMulti("o-");
-    const selectedToppings = filterByPrefixMulti("t-");
+    const selectedCheeses = filterByPrefixMulti(cheeses, "c-");
+    const selectedSauces = filterByPrefixMulti(sauces, "s-");
+    const selectedSalads = filterByPrefixMulti(salads, "v-");
+    const selectedExtras = filterByPrefixMulti(extras, "e-");
+    const selectedOther = filterByPrefixMulti(other, "o-");
+    const selectedToppings = filterByPrefixMulti(toppings, "t-");
 
     setSelectedProduct(selectedProduct ?? null);
     setSelectedProteins(selectedProteins);
@@ -247,6 +271,12 @@ function App() {
     setPreviousTotals(calculateTotals);
   }, [calculateTotals]);
 
+  useEffect(() => {
+    if (!productUsesBread(selectedProduct) && selectedCarbohydrate) {
+      setSelectedCarbohydrate(null);
+    }
+  }, [selectedProduct, selectedCarbohydrate]);
+
   const handleDoubleProtein = (): void => {
     setDoubleProtein(!doubleProtein);
     calculateTotalsFunction();
@@ -294,10 +324,10 @@ function App() {
               title={"Product"}
               options={products}
               selected={selectedProduct}
-              setSelected={setSelectedProduct}
+              setSelected={handleProductSelect}
             />
             {/* Bread */}
-            {(selectedProduct?.id == "p-1" || selectedProduct?.id == "p-2") && (
+            {productUsesBread(selectedProduct) && (
               <SingleSelectDropdown
                 title={"Bread"}
                 options={carbohydrates}
@@ -420,6 +450,17 @@ function App() {
             <p className="smallprint mt-4">
               SUBWAY® is a Registered Trademark of Subway IP LLC. © 2023-
               {new Date().getFullYear()} Subway IP LLC. All Rights Reserved.
+            </p>
+            <p className="smallprint mt-2">
+              Built by{" "}
+              <a
+                href="https://mariawarnes.dev"
+                target="_blank"
+                rel="noreferrer"
+                className="font-normal underline"
+              >
+                mariawarnes.dev
+              </a>
             </p>
           </div>
         </div>

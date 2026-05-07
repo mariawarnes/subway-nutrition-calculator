@@ -27,9 +27,25 @@ const Dropdown = ({
       : [passedSelected]
     : [];
 
+  const isNoneOption = (option: Ingredient) =>
+    option.name.trim().toLowerCase() === "none";
+
+  const normalizeMultipleSelection = (items: Ingredient[]) => {
+    const addedItem = items.find(
+      (item) => !selectedArray.some((selected) => selected.id === item.id)
+    );
+
+    if (addedItem && isNoneOption(addedItem)) {
+      return [addedItem];
+    }
+
+    return items.filter((item) => !isNoneOption(item));
+  };
+
   const handleSelect = (value: Ingredient | Ingredient[]) => {
     if (Array.isArray(value)) {
-      setSelected(value.length > 0 ? value : null);
+      const newSelected = multiple ? normalizeMultipleSelection(value) : value;
+      setSelected(newSelected.length > 0 ? newSelected : null);
       return;
     }
 
@@ -43,7 +59,10 @@ const Dropdown = ({
         );
         setSelected(newSelected.length > 0 ? newSelected : null);
       } else {
-        setSelected([...selectedArray, value]);
+        const newSelected = isNoneOption(value)
+          ? [value]
+          : [...selectedArray.filter((item) => !isNoneOption(item)), value];
+        setSelected(newSelected);
       }
     } else {
       const isAlreadySelected = selectedArray.some(
